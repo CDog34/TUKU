@@ -39,7 +39,11 @@ $(function(){
 			}));
 			console.log(qnForm);
 
-			qnForm.submit();
+			qnForm.ajaxSubmit({
+                success:function(res){
+                    console.log(res);
+                }
+            });
             
 			
 		});
