@@ -14,32 +14,34 @@ $(function(){
 	var upForm=$("#tkUpload");
 	upForm.submit(function(){
 		console.log(upForm);
-		
-		var qnForm=$("<form />");
-		qnForm.attr({
-			method : upForm.attr("method"),
-			action : upForm.attr("action"),
-			enctype : upForm.attr("enctype"),
-		});
-		fname=$("input[name='x:folder']").val()+((new Date()).valueOf())+getName();
+
+		var qnForm={
+			url : upForm.attr("action"),
+			enctype : upForm.attr("enctype")
+		};
+		var fname=$("input[name='x:folder']").val()+((new Date()).valueOf())+getName();
 		var friname=$("input[name='x:friname']").val() ? $("input[name='x:folder']").val()+$("input[name='x:friname']").val() : fname;
 		$("input[name='x:friname']").val(friname);
 		var chd=upForm.children();
+		var data={};
 		for (var i=0;i<chd.length;i++){
-			qnForm.append($(chd[i]).removeAttr("id"));
+			data[$(chd[i]).attr("name")]=$(chd[i]).val();
 		}
 		$.get("/a/genPP?fname="+fname,function(token){
-			qnForm.append($("<input>").attr({
-				name : "token",
-				value : token,
-			}));
-			qnForm.append($("<input>").attr({
-				name : "key",
-				value : fname,
-			}));
-			console.log(qnForm);
+			data["token"]=token;
+			data["key"]=fname;
 
-			qnForm.submit();
+
+			$.ajax({
+				type:"POST",
+				url:qnForm.url,
+				enctype:qnForm.enctype,
+				data:data,
+				success: function (res) {
+					console.log(res);
+
+				}
+			})
             
 			
 		});
