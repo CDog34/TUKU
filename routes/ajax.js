@@ -14,6 +14,7 @@ router.post('/cbk',function(req,res){
 	console.log("收到回调请求");
 	qn.isQiniuCallback(req.header("Authorization"),req.body,function(){
 		console.log("合法请求");
+        console.log(req.body);
 		res.json({"success":true,"url":config.siteAddress+"p/"+req.body.name});
 	},function(){
 		console.log("非法请求");
