@@ -8,7 +8,8 @@ exports.genPutPolicy=function(filename,cbk){
 		filename=":"+filename;
 	}
 	var PP = new qiniu.rs.PutPolicy(config.bucketName+filename);
-	PP.returnBody= JSON.stringify({
+	PP.callbackUrl="http://TAT.pics/a/uploadSuccess";
+	PP.callbackBody= JSON.stringify({
 			"key" :"$(key)",
 			"size" : "$(fsize)",
 			"w" : "$(imageInfo.width)",

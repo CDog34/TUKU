@@ -9,4 +9,8 @@ router.get('/genPP', function(req, res) {
 	});
 });
 
+router.post('/uploadSuccess', function(req, res) {
+	console.log(req.body);
+});
+
 module.exports = router;
