@@ -10,9 +10,12 @@ var debug = require('./routes/debug');
 var ajax = require('./routes/ajax');
 var view=require("./routes/viewPic");
 
-//var mongoose=require("mongoose");
+var mongoose=require("mongoose");
 
-//mongoose.connect("mongodb://CDog:Caojq1248?_@115.29.136.4:27017/tuku_TAT");
+mongoose.connect("mongodb://115.29.136.4:27017/tuku_TAT",{
+  user:"tuku_user",
+  pass:"hahalaocao"
+});
 
 
 var app = express();

@@ -11,6 +11,7 @@
     "debug": "~2.2.0",
     "express": "~4.13.0",
     "hbs": "~3.1.0",
+    "mongoose": "^4.1.10",
     "morgan": "~1.6.1",
     "qiniu": "^6.1.8",
     "serve-favicon": "~2.3.0"
