@@ -38,12 +38,12 @@ $(function(){
 				value : fname,
 			}));
 			console.log(qnForm);
-
-			qnForm.ajaxSubmit({
-                success:function(res){
-                    console.log(res);
-                }
-            });
+			qnForm.submit();
+//			$(qnForm).ajaxSubmit({
+//                success:function(res){
+//                    console.log(res);
+//                }
+//            });
             
 			
 		});

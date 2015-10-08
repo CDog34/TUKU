@@ -36,6 +36,7 @@ function getRawBody(body){
 }
 
 exports.isQiniuCallback=function(aStr,body,successCbk,failCbk){
+	console.log(aStr);
 	if ( aStr == undefined || body == undefined ||aStr.substring(0,aStr.indexOf(" ")) != "QBox") {
 		failCbk();
 		return;
@@ -53,4 +54,3 @@ exports.isQiniuCallback=function(aStr,body,successCbk,failCbk){
 		failCbk();
 	}
 }
-
