@@ -28,7 +28,7 @@ exports.genPutPolicy=function(filename,cbk){
 function getRawBody(body){
 	var rst="";
 	var dot="";
-	for (key in body){
+	for (var key in body){
 		rst=rst+dot+encodeURIComponent(key)+"="+encodeURIComponent(body[key]);
 		dot="&";
 	}

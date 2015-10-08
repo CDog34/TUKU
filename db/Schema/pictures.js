@@ -14,17 +14,11 @@ var pictureSchema = new Schema({
 
 pictureSchema.index({key:1});
 
-pictureSchema.statics.addOne=function(data,cbk){
-    var newDoc=new pictureSchema({
-        key:data.key,
-        realAddress:data.realAddress,
-        picView:0
-    });
-    newDoc.save(cbk);
-}
+
 
 pictureSchema.statics.getResent= function (number,cbk) {
     this.find({},{$inc:{picView:1}})
+        .order({createDate:1})
         .limit(number)
         .exec(cbk);
 

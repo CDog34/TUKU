@@ -1,0 +1,7 @@
+.stage{
+    height: 300px;
+    width: 80%;
+    background-color: rgba(128, 128, 128, 0.44);
+    border: black 1px dashed;
+    border-radius: 20px;
+}

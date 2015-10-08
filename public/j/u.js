@@ -39,9 +39,14 @@ $(function(){
 			}));
 			console.log(qnForm);
 //			qnForm.submit();
-			$(qnForm).ajaxSubmit({
+			qnForm.ajaxSubmit({
+				target:"#msg",
+				dataType:"json",
+				clearForm:false,
+				resetForm:false,
                 success:function(res){
-                    console.log(res);
+					$("#msg").html(res.url);
+                    alert("wow");
                 }
             });
             
@@ -50,4 +55,26 @@ $(function(){
 		
 		return false;
 	})
+
+
+
 });
+
+function doUpload(name,file){
+
+    var upForm=new FormData();
+    upForm.append("file",file);
+
+
+
+    upForm.enctype="multipart/form-data";
+    $.get("/a/genPP?fname="+name,function(token) {
+        upForm.append("token",token);
+        upForm.append("key",name);
+        upForm.append("x:friname",name);
+
+        var oReq = new XMLHttpRequest();
+        oReq.open("POST", "http://upload.qiniu.com");
+        oReq.send(upForm);
+    });
+}
