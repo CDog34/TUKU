@@ -22,7 +22,7 @@ $(function(){
 			enctype : upForm.attr("enctype"),
 		});
 		fname=$("input[name='x:folder']").val()+((new Date()).valueOf())+getName();
-		var friname=$("input[name='x:friname']").val() ? $("input[name='x:folder']").val()+$("input[name='x:friname']").val() : fname;
+		var friname=($("input[name='x:friname']").val() ? $("input[name='x:folder']").val()+$("input[name='x:friname']").val() : fname).replace(/\s+/g,"_");
 		$("input[name='x:friname']").val(friname);
 		var chd=upForm.children();
 		for (var i=0;i<chd.length;i++){
