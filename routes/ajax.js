@@ -13,11 +13,12 @@ router.get('/genPP', function(req, res) {
 
 router.post('/cbk',function(req,res){
 	qn.isQiniuCallback(req.header("Authorization"),req.body,function(){
-		picture.addOne({
+		var newPic=new picture({
 			key:req.body.name,
 			realAddress:req.body.key,
 			picView:0
 		});
+		newPic.save();
 		res.json({"success":true,"url":config.siteAddress+"v/"+req.body.name});
 	},function(){
 		res.send("这不好玩！");
