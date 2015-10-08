@@ -4,7 +4,7 @@ var conf=require("../conf.json");
 
 
 router.get('/*', function(req, res) {
-    req.redirect(conf.qnAddress+req.params[0].substr(1));
+    res.redirect(conf.qnAddress+req.params[0]);
     //res.send("你请求的地址为："+req.params[0]);
 });
 

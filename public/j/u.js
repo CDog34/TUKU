@@ -6,7 +6,7 @@ $(function(){
 		var length = myFile.length;
 		var x = myFile.lastIndexOf("\\");
 		x++; 
-		var fileName = myFile.substring(x,length); 
+		var fileName = myFile.substring(x,length).replace(/\s+/g,"_"); 
 		console.log(fileName);
 		return fileName;
 	}
@@ -38,12 +38,12 @@ $(function(){
 				value : fname,
 			}));
 			console.log(qnForm);
-			qnForm.submit();
-//			$(qnForm).ajaxSubmit({
-//                success:function(res){
-//                    console.log(res);
-//                }
-//            });
+//			qnForm.submit();
+			$(qnForm).ajaxSubmit({
+                success:function(res){
+                    console.log(res);
+                }
+            });
             
 			
 		});

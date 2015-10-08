@@ -2,7 +2,7 @@ var express = require('express');
 var qn = require('../qbox/QBox');
 var config = require('../conf.json');
 var router = express.Router();
-var picture=require("../Model/picture");
+//var picture=require("../Model/picture");
 
 /* 生成上传凭证. */
 router.get('/genPP', function(req, res) {
