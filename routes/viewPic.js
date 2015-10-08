@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var conf=require("../conf.json");
 
 
 router.get('/*', function(req, res) {
-    res.send("你请求的地址为："+req.params[0]);
+    req.redirect(conf.qnAddress+req.params[0].substr(1));
+    //res.send("你请求的地址为："+req.params[0]);
 });
 
 

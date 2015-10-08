@@ -8,6 +8,11 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var debug = require('./routes/debug');
 var ajax = require('./routes/ajax');
+var view=require("./routes/viewPic");
+
+//var mongoose=require("mongoose");
+
+//mongoose.connect("mongodb://CDog:Caojq1248?_@115.29.136.4:27017/tuku_TAT");
 
 
 var app = express();
@@ -27,6 +32,7 @@ app.use("/s",express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/d', debug);
 app.use('/a',ajax);
+app.use('/v',view);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
