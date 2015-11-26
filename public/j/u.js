@@ -79,7 +79,10 @@ function doUpload(name,file){
 			type: "POST",
 			data: upForm,
 			processData: false,
-			contentType: false
+			contentType: false,
+			success:function(data){
+				console.log(data);
+			}
 		});
         //oReq.open("POST", "http://upload.qiniu.com");
         //oReq.send(upForm);
