@@ -21,7 +21,7 @@ $(document).on({
 });
 $m.on('click', function(e) {
     e.preventDefault();
-    $('#fu').trigger('click');
+    $('#fu').click();
 })
 
 $m.get(0).addEventListener("drop",function(e){
