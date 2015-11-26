@@ -51,7 +51,7 @@ var doUpdate=function(data){
 }
 
 $m.get(0).addEventListener("drop",function(e){
-    doUpdate(dataTransfer.files);
+    doUpdate(e.dataTransfer.files);
 
 
 });
