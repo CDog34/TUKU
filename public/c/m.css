@@ -7,11 +7,17 @@
     position: relative;
 }
 .image-item{
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
     width: 300px;
     margin: 3px;
     box-shadow: #B0BEC7 1px 1px 4px 0px;
 }
 #image-list{
+
     padding:10px;
     width:80%;
     margin-top: 50px;
@@ -23,7 +29,6 @@
 #msg{
     font-family:"PT Serif",\5FAE\8EDF\6B63\9ED1\9AD4,\5FAE\8F6F\96C5\9ED1,\534E\6587\7EC6\9ED1,Georgia,Times,serif;
     font-size: 35px;
-    color:#323256;
     text-align: center;
 }
 #msg .msg-line2{

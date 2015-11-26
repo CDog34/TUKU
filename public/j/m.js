@@ -46,10 +46,15 @@ var doUpdate=function(data){
 
     doUpload("test/"+genName(data[0].name),data[0],function(data){
         if (data.success){
-            $("<img>")
-                .attr("src",data.url)
-                .addClass("image-item")
-                .prependTo($imgList);
+            $("<a>")
+                .attr('href',data.url)
+                .append(
+                    $("<img>")
+                        .attr("src",data.url)
+                        .addClass("image-item")
+
+                )
+                .prependTo($imgList)
         }
         $msg.html("上传成功");
         setTimeout("$msg.html(origWord)",2000);
