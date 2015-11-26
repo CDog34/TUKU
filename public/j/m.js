@@ -37,7 +37,9 @@ $m.get(0).addEventListener("drop",function(e){
 
     doUpload("test/"+genName(data[0].name),data[0],function(data){
         if (data.success){
-            $("#msg").html(data.url);
+            var nImg=$("<img>");
+            nImg.attr("src",data.url);
+            nImg.appendTo("#msg");
         }
     });
 });
