@@ -16,7 +16,7 @@ router.post('/cbk',function(req,res){
 		var newPic=new picture({
 			key:req.body.name,
 			realAddress:req.body.key,
-			picView:0
+			canView:true
 		});
 		newPic.save();
 		res.json({"success":true,"url":config.siteAddress+"v/"+req.body.name});
@@ -29,5 +29,20 @@ router.post('/cbk',function(req,res){
 router.get('/cbk',function(req,res){
 	res.send("这不好玩！");
 });
+router.get("/getResent",function(req,res){
+	picture.getResent(10,function(err,data){
+		if (err){
+			console.log(err);
+			res.json({
+				code:500
+			});
+			return;
+		}
+		res.json({
+			code:200,
+			pics:data
+		})
+	})
+})
 
 module.exports = router;

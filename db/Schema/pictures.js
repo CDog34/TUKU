@@ -9,16 +9,13 @@ var pictureSchema = new Schema({
     key :  String,
     realAddress:String,
     createDate:{type: Date, default: new Date()},
-    picView : Number
+    canView : {type:Boolean,default:true}
 });
-
-pictureSchema.index({key:1});
-
 
 
 pictureSchema.statics.getResent= function (number,cbk) {
-    this.find({},{$inc:{picView:1}})
-        .order({createDate:1})
+    picture.find({canView:true})
+        .sort({createDate:1})
         .limit(number)
         .exec(cbk);
 
@@ -27,4 +24,6 @@ pictureSchema.statics.getResent= function (number,cbk) {
 
 
 
-module.exports=pictureSchema;
+var picture=mongoose.model("picture",pictureSchema);
+
+module.exports=picture;
