@@ -50,7 +50,7 @@ exports.isQiniuCallback=function(aStr,body,successCbk,failCbk){
 	if (data===params[1]){
 		successCbk();
 	}else{
-		console.log(data);
+		console.log(data,getRawBody(body));
 		failCbk();
 	}
 }
