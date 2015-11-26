@@ -29,7 +29,7 @@ function getRawBody(body){
 	var rst="";
 	var dot="";
 	for (var key in body){
-		rst=rst+dot+encodeURI(key)+"="+encodeURI(body[key]);
+		rst=rst+dot+encodeURIComponent(key)+"="+encodeURIComponent(body[key]);
 		dot="&";
 	}
 	return rst;
