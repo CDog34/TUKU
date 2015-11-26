@@ -21,7 +21,7 @@ $(document).on({
 });
 $m.on('click', function(e) {
     e.preventDefault();
-    $(this).closest('input[type=file]').trigger('click');
+    $('#fu').trigger('click');
 })
 
 $m.get(0).addEventListener("drop",function(e){
