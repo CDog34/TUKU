@@ -4,6 +4,9 @@
 
 
 var $m=$(".stage");
+var $imgList=$("#image-list");
+var origWord=$("#msg").html();
+var $msg=$("#msg");
 
 $(document).on({
     dragleave:function(e){    //拖离
@@ -39,14 +42,17 @@ var doUpdate=function(data){
         alert("您选择的不是图片");
         return false;
     }
-    $("#msg").html("正在上传，请稍后");
+    $msg.html("正在上传，请稍后");
 
     doUpload("test/"+genName(data[0].name),data[0],function(data){
         if (data.success){
-            var nImg=$("<img>");
-            nImg.attr("src",data.url);
-            nImg.appendTo("#msg");
+            $("<img>")
+                .attr("src",data.url)
+                .addClass("image-item")
+                .prependTo($imgList);
         }
+        $msg.html("上传成功");
+        setTimeout("$msg.html(origWord)",2000);
     });
 }
 
@@ -58,4 +64,19 @@ $m.get(0).addEventListener("drop",function(e){
 var genName=function(str){
     str=str.replace(/\s/ig,"_");
     return Date.now()+str;
-}
+};
+
+
+$(function(){
+    $.get("/a/getResent",function(data){
+        if (data.code==200){
+            var d=data.pics;
+            for (i in d){
+                $("<img>")
+                    .attr("src",data.preDomain+d[i].realAddress)
+                    .addClass("image-item")
+                    .appendTo($imgList);
+            }
+        }
+    })
+})

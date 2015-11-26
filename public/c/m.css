@@ -1,7 +1,42 @@
 .stage{
     height: 300px;
     width: 80%;
-    background-color: rgba(128, 128, 128, 0.44);
+    background-color: #66ccff;
     border: black 1px dashed;
     border-radius: 20px;
+    position: relative;
+}
+.image-item{
+    width: 300px;
+    margin: 3px;
+    box-shadow: #B0BEC7 1px 1px 4px 0px;
+}
+#image-list{
+    padding:10px;
+    width:80%;
+    margin-top: 50px;
+}
+.block-xcenter{
+    margin-left:auto;
+    margin-right:auto;
+}
+#msg{
+    font-family:"PT Serif",\5FAE\8EDF\6B63\9ED1\9AD4,\5FAE\8F6F\96C5\9ED1,\534E\6587\7EC6\9ED1,Georgia,Times,serif;
+    font-size: 35px;
+    color:#323256;
+    text-align: center;
+}
+#msg .msg-line2{
+    color:azure;
+    font-size: 30px;
+}
+.abs-center{
+    position: absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
