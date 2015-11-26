@@ -60,7 +60,7 @@ $(function(){
 
 });
 
-function doUpload(name,file){
+function doUpload(name,file,cbk){
 
     var upForm=new FormData();
     upForm.append("file",file);
@@ -80,9 +80,7 @@ function doUpload(name,file){
 			data: upForm,
 			processData: false,
 			contentType: false,
-			success:function(data){
-				console.log(data);
-			}
+			success:cbk
 		});
         //oReq.open("POST", "http://upload.qiniu.com");
         //oReq.send(upForm);

@@ -34,9 +34,12 @@ $m.get(0).addEventListener("drop",function(e){
         return false;
     }
     $("#msg").html("正在上传，请稍后");
-    setTimeout("$('#msg').html('上传完成')",5000);
 
-    doUpload("test/"+genName(data[0].name),data[0]);
+    doUpload("test/"+genName(data[0].name),data[0],function(data){
+        if (data.success){
+            $("#msg").html(data.url);
+        }
+    });
 });
 var genName=function(str){
     str=str.replace(/\s/ig,"_");
