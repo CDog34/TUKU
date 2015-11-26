@@ -73,8 +73,15 @@ function doUpload(name,file){
         upForm.append("key",name);
         upForm.append("x:friname",name);
 
-        var oReq = new XMLHttpRequest();
-        oReq.open("POST", "http://upload.qiniu.com");
-        oReq.send(upForm);
+        //var oReq = new XMLHttpRequest();
+		$.ajax({
+			url: "http://upload.qiniu.com",
+			type: "POST",
+			data: upForm,
+			processData: false,
+			contentType: false
+		});
+        //oReq.open("POST", "http://upload.qiniu.com");
+        //oReq.send(upForm);
     });
 }
