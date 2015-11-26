@@ -44,7 +44,7 @@ var doUpdate=function(data){
     }
     $msg.html("正在上传，请稍后");
 
-    doUpload("test/"+genName(data[0].name),data[0],function(data){
+    doUpload(genName(data[0].name),data[0],function(data){
         if (data.success){
             $("<a>")
                 .attr('href',data.url)

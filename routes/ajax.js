@@ -31,7 +31,7 @@ router.get('/cbk',function(req,res){
 	res.send("这不好玩！");
 });
 router.get("/getResent",function(req,res){
-	picture.getResent(10,function(err,data){
+	picture.getResent(12,function(err,data){
 		if (err){
 			console.log(err);
 			res.json({

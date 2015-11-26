@@ -1,8 +1,8 @@
 .stage{
     height: 300px;
     width: 80%;
-    background-color: #66ccff;
-    border: black 1px dashed;
+    background-color: #97D8F9;;
+
     border-radius: 20px;
     position: relative;
 }
@@ -44,4 +44,17 @@
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+.cp{
+    width:90%;
+
+    margin-top: 20px;
+}
+.cp-words{
+    font-size: 16px;
+    color: gray;
+    text-align: center;
+}
+.cp-words a{
+    color:#66ccff;
 }
