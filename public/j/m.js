@@ -19,14 +19,17 @@ $(document).on({
         e.preventDefault();
     }
 });
+$('#fu').on('change', function (e) {
+    doUpdate($("#fu").prop('files'));
+
+})
 $m.on('click', function(e) {
     e.preventDefault();
     $('#fu').click();
+
 })
 
-$m.get(0).addEventListener("drop",function(e){
-    var data= e.dataTransfer.files;
-
+var doUpdate=function(data){
     if (data.length>1){
         alert("对不起，您只能一次上传个文件");
         return false;
@@ -45,6 +48,12 @@ $m.get(0).addEventListener("drop",function(e){
             nImg.appendTo("#msg");
         }
     });
+}
+
+$m.get(0).addEventListener("drop",function(e){
+    doUpdate(dataTransfer.files);
+
+
 });
 var genName=function(str){
     str=str.replace(/\s/ig,"_");
