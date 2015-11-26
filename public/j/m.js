@@ -19,7 +19,10 @@ $(document).on({
         e.preventDefault();
     }
 });
-
+$m.on('click', function(e) {
+    e.preventDefault();
+    $(this).closest('input[type=file]').trigger('click');
+})
 
 $m.get(0).addEventListener("drop",function(e){
     var data= e.dataTransfer.files;
