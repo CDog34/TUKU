@@ -2,7 +2,7 @@ var express = require('express');
 var qn = require('../qbox/QBox');
 var config = require('../conf.json');
 var router = express.Router();
-var picture=require("../db/Model/picture");
+var picture=require("../db/Schema/pictures");
 var conf=require("../conf");
 
 /* 生成上传凭证. */

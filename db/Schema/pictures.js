@@ -8,14 +8,14 @@ var pictureSchema = new Schema({
 
     key :  String,
     realAddress:String,
-    createDate:{type: Date, default: new Date()},
+    createDate:{type: Date, default: Date.now()},
     canView : {type:Boolean,default:true}
 });
 
 
 pictureSchema.statics.getResent= function (number,cbk) {
     picture.find({canView:true})
-        .sort({createDate:1})
+        .sort({_id:-1})
         .limit(number)
         .exec(cbk);
 

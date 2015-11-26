@@ -72,10 +72,15 @@ $(function(){
         if (data.code==200){
             var d=data.pics;
             for (i in d){
-                $("<img>")
-                    .attr("src",data.preDomain+d[i].realAddress)
-                    .addClass("image-item")
-                    .appendTo($imgList);
+                $("<a>")
+                    .attr('href',data.preDomain+d[i].realAddress)
+                    .append(
+                    $("<img>")
+                        .attr("src",data.preDomain+d[i].realAddress)
+                        .addClass("image-item")
+
+                    )
+                    .appendTo($imgList)
             }
         }
     })
