@@ -21,6 +21,7 @@ router.post('/cbk',function(req,res){
 		newPic.save();
 		res.json({"success":true,"url":config.siteAddress+"v/"+req.body.name});
 	},function(){
+		console.log(req.header("Authorization"),req.body);
 		res.send("这不好玩！");
 	});
 	
