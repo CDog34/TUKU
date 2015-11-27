@@ -51,7 +51,9 @@ var doUpdate=function(data){
                 .append(
                     $("<img>")
                         .attr("src",data.url)
-                        .addClass("image-item")
+                        .addClass("image-item").load(function (e) {
+                        $(e.target).addClass("show");
+                    })
 
                 )
                 .prependTo($imgList)
@@ -67,7 +69,7 @@ $m.get(0).addEventListener("drop",function(e){
 
 });
 var genName=function(str){
-    str=str.replace(/\s/ig,"_");
+    str=str.replace(/[\s\(\)]/ig,"_");
     return Date.now()+str;
 };
 
@@ -82,7 +84,9 @@ $(function(){
                     .append(
                     $("<img>")
                         .attr("src",data.preDomain+d[i].realAddress)
-                        .addClass("image-item")
+                        .addClass("image-item").load(function (e) {
+                        $(e.target).addClass("show");
+                    })
 
                     )
                     .appendTo($imgList)

@@ -15,6 +15,10 @@
     width: 300px;
     margin: 3px;
     box-shadow: #B0BEC7 1px 1px 4px 0px;
+    opacity: 0;
+}
+.image-item.show{
+    opacity: 1;
 }
 #image-list{
 
