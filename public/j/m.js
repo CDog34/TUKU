@@ -7,6 +7,36 @@ var $m=$(".stage");
 var $imgList=$("#image-list");
 var origWord=$("#msg").html();
 var $msg=$("#msg");
+var $popup=$(".popup-gray");
+var $cpyMsg=$(".pic-detail .msg");
+
+$(".btn.btn-close").click(function () {
+    $cpyMsg.fadeOut();
+    $popup.fadeOut();
+})
+
+
+
+var clip = new ZeroClipboard($(".btn.btn-cpy")[0], {
+    moviePath: "ZeroClipboard.swf"
+} );
+clip.on('aftercopy', function(event) {
+    $cpyMsg.html("复制成功");
+    $cpyMsg.fadeIn();
+} );
+clip.on('error', function(event) {
+    $cpyMsg.html("复制错误,请手动复制");
+    $cpyMsg.fadeIn();
+} );
+
+
+
+function showDetail(e){
+    $(".pic-detail img").attr("src", e.target.src || e.target.href);
+    $(".pic-detail p span").html(e.target.src || e.target.href);
+    $(".btn.btn-cpy").attr("data-clipboard-text",e.target.src || e.target.href);
+    $popup.fadeIn();
+}
 
 $(document).on({
     dragleave:function(e){    //拖离
@@ -56,6 +86,11 @@ var doUpdate=function(data){
                     })
 
                 )
+                .addClass("a-wrapper")
+                .click(function(e){
+                    e.preventDefault();
+                    showDetail(e);
+                })
                 .prependTo($imgList)
         }
         $msg.html("上传成功");
@@ -80,15 +115,20 @@ $(function(){
             var d=data.pics;
             for (i in d){
                 $("<a>")
-                    .attr('href',data.preDomain+d[i].realAddress)
+                    .attr({href:data.preDomain+d[i].realAddress,target:"_blank"})
                     .append(
                     $("<img>")
-                        .attr("src",data.preDomain+d[i].realAddress)
+                        .attr('src',data.preDomain+d[i].realAddress)
                         .addClass("image-item").load(function (e) {
                         $(e.target).addClass("show");
                     })
 
                     )
+                    .addClass("a-wrapper")
+                    .click(function(e){
+                        e.preventDefault();
+                        showDetail(e);
+                    })
                     .appendTo($imgList)
             }
         }
