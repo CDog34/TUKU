@@ -55,7 +55,8 @@ if (app.get('env') === 'development') {
     res.render('error', {
       title:"服务器内部错误",
       message: err.message,
-      error: err
+      error: err,
+      meta:conf.siteMeta
     });
   });
 }
@@ -67,7 +68,8 @@ app.use(function(err, req, res, next) {
   res.render('error', {
     title:"服务器内部错误",
     message: err.message,
-    error: {}
+    error: {},
+    meta:conf.siteMeta
   });
 });
 
