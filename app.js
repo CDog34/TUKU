@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var conf=require("./conf");
 
 var routes = require('./routes/index');
 var debug = require('./routes/debug');
@@ -12,9 +13,9 @@ var view=require("./routes/viewPic");
 
 var mongoose=require("mongoose");
 
-mongoose.connect("mongodb://115.29.136.4:27017/tuku_TAT",{
-  user:"tuku_user",
-  pass:"hahalaocao"
+mongoose.connect("mongodb://"+conf.db.host+"/"+conf.db.dbName,{
+  user:conf.db.userName,
+  pass:conf.db.passwd
 });
 
 
@@ -39,7 +40,7 @@ app.use('/v',view);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  var err = new Error('404 Not Found');
   err.status = 404;
   next(err);
 });

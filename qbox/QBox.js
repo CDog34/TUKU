@@ -1,16 +1,16 @@
 var qiniu = require("qiniu");
 var config=require("../conf.json");
 var crypto=require("crypto");
-qiniu.conf.ACCESS_KEY=config.accessKey;
-qiniu.conf.SECRET_KEY=config.secretKey;
+qiniu.conf.ACCESS_KEY=config.qiniu.accessKey;
+qiniu.conf.SECRET_KEY=config.qiniu.secretKey;
 
 exports.genPutPolicy=function(filename,cbk){
-	console.log(config.siteAddress);
+	console.log(config.siteMeta.siteAddress);
 	if (filename !="" ) {
 		filename=":"+filename;
 	}
-	var PP = new qiniu.rs.PutPolicy(config.bucketName+filename);
-	PP.callbackUrl=config.siteAddress+"a/cbk";
+	var PP = new qiniu.rs.PutPolicy(config.qiniu.bucketName+filename);
+	PP.callbackUrl=config.siteMeta.siteAddress+"a/cbk";
 	PP.callbackBody="name=$(x:friname)&hash=$(etag)&key=$(key)";
 	PP.returnBody= JSON.stringify({
 			"key" :"$(key)",
@@ -41,12 +41,12 @@ exports.isQiniuCallback=function(aStr,body,successCbk,failCbk){
 		return;
 	}
 	var params=aStr.substring(aStr.indexOf(" ")+1).split(":");
-	if (params.length != 2 || params[0] != config.accessKey){
+	if (params.length != 2 || params[0] != config.qiniu.accessKey){
 		failCbk();
 		return;
 	}
 	var data="/a/cbk\n"+getRawBody(body);
-	data=crypto.createHmac('sha1', config.secretKey).update(data).digest().toString("base64").replace(/\+/ig,"-").replace(/\//ig,"_");
+	data=crypto.createHmac('sha1', config.qiniu.secretKey).update(data).digest().toString("base64").replace(/\+/ig,"-").replace(/\//ig,"_");
 	if (data===params[1]){
 		successCbk();
 	}else{

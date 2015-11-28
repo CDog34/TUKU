@@ -1,6 +1,5 @@
 var express = require('express');
 var qn = require('../qbox/QBox');
-var config = require('../conf.json');
 var router = express.Router();
 var picture=require("../db/Schema/pictures");
 var conf=require("../conf");
@@ -20,7 +19,7 @@ router.post('/cbk',function(req,res){
 			canView:true
 		});
 		newPic.save();
-		res.json({"success":true,"url":config.siteAddress+"v/"+req.body.name});
+		res.json({"success":true,"url":conf.siteMeta.siteAddress+"v/"+req.body.name});
 	},function(){
 		console.log(req.header("Authorization"),req.body);
 		res.send("这不好玩！");
@@ -41,7 +40,7 @@ router.get("/getResent",function(req,res){
 		}
 		res.json({
 			code:200,
-			preDomain:conf.siteAddress+"v/",
+			preDomain:conf.siteMeta.siteAddress+"v/",
 			pics:data
 		})
 	})
