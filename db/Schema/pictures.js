@@ -9,6 +9,7 @@ var pictureSchema = new Schema({
     key :  String,
     realAddress:String,
     createDate:{type: Date, default: Date.now()},
+    viewNum:{type:Number,default:0},
     canView : {type:Boolean,default:true}
 });
 
@@ -21,6 +22,11 @@ pictureSchema.statics.getResent= function (number,cbk) {
 
 };
 
+pictureSchema.statics.view= function (id,cbk) {
+    picture.findOneAndUpdate({key:id},{$inc:{viewNum:1}})
+        .exec(cbk);
+
+};
 
 
 

@@ -3,14 +3,16 @@
 		"accessKey" : "",
 		"secretKey" : "",
 		"bucketName" : "",
-		"qnAddress" : ""
+		"qnAddress" : "",
+		"thumbnail":"!h500"
 	},
 	"siteMeta":{
 		"title":"TAT图床",
 		"keyWords":"images,pictures,image hosting,图床,免费图床,七牛,qiniu",
 		"description":"一个采用node.js+qiniu实现的轻量级图床",
 		"icon":"",
-		"siteAddress" : ""
+		"siteAddress" : "",
+		"thumbnailReferer" : ["http://TAT.pics/","http://localhost:3333/"]
 		
 	},
 	"db":{

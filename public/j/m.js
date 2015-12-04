@@ -33,8 +33,8 @@ clip.on('error', function(event) {
 
 function showDetail(e){
     $(".pic-detail img").attr("src", e.target.src || e.target.href);
-    $(".pic-detail p span").html((e.target.src || e.target.href).substring(0,(e.target.src || e.target.href).lastIndexOf(("!h500"))));
-    $(".btn.btn-cpy").attr("data-clipboard-text",(e.target.src || e.target.href).substring(0,(e.target.src || e.target.href).lastIndexOf(("!h500"))));
+    $(".pic-detail p span").html(e.target.src || e.target.href);
+    $(".btn.btn-cpy").attr("data-clipboard-text",e.target.src || e.target.href);
     $popup.fadeIn();
 }
 
@@ -80,7 +80,7 @@ var doUpdate=function(data){
                 .attr('href',data.url)
                 .append(
                     $("<img>")
-                        .attr("src",data.url+"!h500")
+                        .attr("src",data.url)
                         .addClass("image-item").load(function (e) {
                         $(e.target).addClass("show");
                     })
@@ -118,7 +118,7 @@ $(function(){
                     .attr({href:data.preDomain+d[i].realAddress,target:"_blank"})
                     .append(
                     $("<img>")
-                        .attr('src',data.preDomain+d[i].realAddress+"!h500")
+                        .attr('src',data.preDomain+d[i].realAddress)
                         .addClass("image-item").load(function (e) {
                         $(e.target).addClass("show");
                     })
