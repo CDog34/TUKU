@@ -19,7 +19,7 @@ router.post('/cbk',function(req,res){
 			canView:true
 		});
 		newPic.save();
-		res.json({"success":true,"url":conf.siteMeta.siteAddress+"v/"+req.body.name});
+		res.json({"success":true,"url":"/v/"+req.body.name});
 	},function(){
 		console.log(req.header("Authorization"),req.body);
 		res.send("这不好玩！");
@@ -40,7 +40,7 @@ router.get("/getResent",function(req,res){
 		}
 		res.json({
 			code:200,
-			preDomain:conf.siteMeta.siteAddress+"v/",
+			preDomain:"/v/",
 			pics:data
 		})
 	})
