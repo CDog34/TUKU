@@ -22,7 +22,7 @@ router.get('/*', function(req, res) {
             })
         }else{
             if(data){
-                res.redirect(conf.qiniu.qnAddress+data.realAddress+str);
+                res.redirect(conf.qiniu.qnAddress+data.key+str);
             }else{
                 res.status(404).render('error', {
                     title:"出错了_(:з」∠)_",

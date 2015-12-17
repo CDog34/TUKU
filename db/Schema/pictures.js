@@ -23,7 +23,7 @@ pictureSchema.statics.getResent= function (number,cbk) {
 };
 
 pictureSchema.statics.view= function (id,cbk) {
-    picture.findOneAndUpdate({key:id},{$inc:{viewNum:1}})
+    picture.findOneAndUpdate({realAddress:id},{$inc:{viewNum:1}})
         .exec(cbk);
 
 };

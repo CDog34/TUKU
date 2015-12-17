@@ -104,7 +104,7 @@ $m.get(0).addEventListener("drop",function(e){
 
 });
 var genName=function(str){
-    str=str.replace(/[\s\(\)]/ig,"_");
+    str=str.replace(/[\s\(\)%]/ig,"_");
     return Date.now()+str;
 };
 
