@@ -35,6 +35,7 @@ function showDetail(e){
     $(".pic-detail img").attr("src", e.target.src || e.target.href);
     $(".pic-detail p span").html(e.target.src || e.target.href);
     $(".btn.btn-cpy").attr("data-clipboard-text",e.target.src || e.target.href);
+    $(".btn-open").attr("href",e.target.src || e.target.href);
     $popup.fadeIn();
 }
 
