@@ -7,7 +7,7 @@ function doUpload(name,file,cbk){
         upForm.append("key",name);
         upForm.append("x:friname",name);
 		$.ajax({
-			url: "http://upload.qiniu.com",
+			url: "//up.qbox.me",
 			type: "POST",
 			data: upForm,
 			processData: false,
