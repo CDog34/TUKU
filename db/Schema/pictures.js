@@ -14,9 +14,10 @@ var pictureSchema = new Schema({
 });
 
 
-pictureSchema.statics.getResent= function (number,cbk) {
+pictureSchema.statics.getResent= function (skip,number,cbk) {
     picture.find({canView:true})
         .sort({_id:-1})
+        .skip(skip)
         .limit(number)
         .exec(cbk);
 

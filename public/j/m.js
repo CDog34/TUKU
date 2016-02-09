@@ -9,6 +9,10 @@ var origWord=$("#msg").html();
 var $msg=$("#msg");
 var $popup=$(".popup-gray");
 var $cpyMsg=$(".pic-detail .msg");
+var $bomBtn=$('#btn-load-more');
+var loadMoreText='嗯...我还要...更多...';
+var loadingText='努力加载中>_<';
+var curPage=-1;
 
 $(".btn.btn-close").click(function () {
     $cpyMsg.fadeOut();
@@ -63,6 +67,8 @@ $m.on('click', function(e) {
 
 })
 
+
+
 var doUpdate=function(data){
     if (data.length>1){
         alert("对不起，您只能一次上传个文件");
@@ -96,6 +102,9 @@ var doUpdate=function(data){
         }
         $msg.html("上传成功");
         setTimeout("$msg.html(origWord)",2000);
+    },function(e){
+        $msg.html("呜呜呜出错了呢，请联系作者邮箱：i#cdog.me");
+        setTimeout("$msg.html(origWord)",2000);
     });
 }
 
@@ -108,11 +117,13 @@ var genName=function(str){
     str=str.replace(/[\s\(\)%]/ig,"_");
     return Date.now()+str;
 };
+$bomBtn.click(doLoadMore);
 
-
-$(function(){
-    $.get("/a/getResent",function(data){
+function doLoadMore(){
+    $bomBtn.html(loadingText);
+    $.get("/a/indexPics/"+(++curPage),function(data){
         if (data.code==200){
+            $bomBtn.html(loadMoreText);
             var d=data.pics;
             for (i in d){
                 $("<a>")
@@ -134,4 +145,10 @@ $(function(){
             }
         }
     })
+}
+
+
+
+$(function(){
+    doLoadMore();
 })

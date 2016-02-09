@@ -29,8 +29,15 @@ router.post('/cbk',function(req,res){
 router.get('/cbk',function(req,res){
 	res.send("这不好玩！");
 });
-router.get("/getResent",function(req,res){
-	picture.getResent(12,function(err,data){
+router.get("/indexPics/:num",function(req,res){
+	if (page=parseInt(req.params.num) != req.params.num){
+		res.json({
+				code:500,
+				msg:'params error'
+			});
+		return;
+	}
+	picture.getResent(parseInt(req.params.num)*12,12,function(err,data){
 		if (err){
 			console.log(err);
 			res.json({
