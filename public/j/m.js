@@ -10,11 +10,15 @@ var $msg=$("#msg");
 var $popup=$(".popup-gray");
 var $cpyMsg=$(".pic-detail .msg");
 var $bomBtn=$('#btn-load-more');
+var $comment=$('iframe#comment');
 var loadMoreText='嗯...我还要...更多...';
 var loadingText='努力加载中>_<';
 var curPage=-1;
+var $cmtOpener=$('.comment-opener');
+var $cmtWrapper=$('.comment-wrapper')
 
 $(".btn.btn-close").click(function () {
+    $cmtWrapper.removeClass('cmt-show')
     $cpyMsg.fadeOut();
     $popup.fadeOut();
 })
@@ -40,6 +44,8 @@ function showDetail(e){
     $(".pic-detail p span").html(e.target.src || e.target.href);
     $(".btn.btn-cpy").attr("data-clipboard-text",e.target.src || e.target.href);
     $(".btn-open").attr("href",e.target.src || e.target.href);
+    console.log(e.target)
+    $comment.attr('src',"/c/"+$(e.target).data('id'));
     $popup.fadeIn();
 }
 
@@ -127,10 +133,10 @@ function doLoadMore(){
             var d=data.pics;
             for (i in d){
                 $("<a>")
-                    .attr({href:data.preDomain+d[i].realAddress,target:"_blank"})
+                    .attr({href:data.preDomain+d[i].realAddress,target:"_blank",'data-id':d[i]._id})
                     .append(
                     $("<img>")
-                        .attr('src',data.preDomain+d[i].realAddress)
+                        .attr({src:data.preDomain+d[i].realAddress,'data-id':d[i]._id})
                         .addClass("image-item").load(function (e) {
                         $(e.target).addClass("show");
                     })
@@ -147,8 +153,11 @@ function doLoadMore(){
     })
 }
 
-
+function toggleCmt(){
+    $cmtWrapper.toggleClass('cmt-show');
+}
 
 $(function(){
     doLoadMore();
+    $cmtOpener.click(toggleCmt)
 })

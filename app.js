@@ -10,6 +10,7 @@ var routes = require('./routes/index');
 var debug = require('./routes/debug');
 var ajax = require('./routes/ajax');
 var view=require("./routes/viewPic");
+var comment=require("./routes/comment");
 
 var mongoose=require("mongoose");
 
@@ -37,6 +38,7 @@ app.use('/', routes);
 app.use('/d', debug);
 app.use('/a',ajax);
 app.use('/v',view);
+app.use('/c',comment);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

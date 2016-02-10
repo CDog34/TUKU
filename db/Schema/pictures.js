@@ -28,7 +28,11 @@ pictureSchema.statics.view= function (id,cbk) {
         .exec(cbk);
 
 };
+pictureSchema.statics.exist= function (id,cbk) {
+    picture.findOne({_id:id})
+        .exec(cbk);
 
+};
 
 
 var picture=mongoose.model("picture",pictureSchema);
