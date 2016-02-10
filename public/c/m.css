@@ -12,7 +12,7 @@
     -ms-transition: all 1s;
     -o-transition: all 1s;
     transition: all 1s;
-    width:100%;
+    height: 100%;
     margin: 3px;
     box-shadow: #B0BEC7 1px 1px 4px 0px;
     opacity: 0;
@@ -21,7 +21,7 @@
     opacity: 1;
 }
 #image-list{
-
+    text-align: center;
     padding:10px;
     width:80%;
     margin-top: 50px;
@@ -64,10 +64,11 @@
     color:#66ccff;
 }
 .a-wrapper{
-    max-height: 200px;
+    height: 200px;
     overflow: hidden;
     display: inline-block;
-    width:33.33333%;
+    width:auto;
+    position: relative;
 }
 .popup-gray{
     display: none;
