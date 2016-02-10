@@ -19,8 +19,15 @@ router.post('/cbk',function(req,res){
 			realAddress:req.body.key,
 			canView:true
 		});
-		newPic.save();
-		res.json({"success":true,"url":"/v/"+req.body.name});
+		newPic.save(function(err,data){
+			if(err){
+				console.log(err);
+				res.json({code:500,msg:'保存错误'});
+				return;
+			}
+			res.json({"success":true,"url":"/v/"+req.body.name,id:data._id});
+		});
+
 	},function(){
 		console.log(req.header("Authorization"),req.body);
 		res.send("这不好玩！");

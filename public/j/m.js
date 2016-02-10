@@ -90,10 +90,10 @@ var doUpdate=function(data){
     doUpload(genName(data[0].name),data[0],function(data){
         if (data.success){
             $("<a>")
-                .attr('href',data.url)
+                .attr({href:data.url,'data-id':data.id})
                 .append(
                     $("<img>")
-                        .attr("src",data.url)
+                        .attr({src:data.url,'data-id':data.id})
                         .addClass("image-item").load(function (e) {
                         $(e.target).addClass("show");
                     })
@@ -133,7 +133,7 @@ function doLoadMore(){
             var d=data.pics;
             for (i in d){
                 $("<a>")
-                    .attr({href:data.preDomain+d[i].realAddress,target:"_blank",'data-id':d[i]._id})
+                    .attr({href:data.preDomain+d[i].realAddress,'data-id':d[i]._id})
                     .append(
                     $("<img>")
                         .attr({src:data.preDomain+d[i].realAddress,'data-id':d[i]._id})
