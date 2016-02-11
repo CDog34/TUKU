@@ -3,9 +3,10 @@ var router = express.Router();
 var conf=require("../conf.json");
 var picture=require("../db/Schema/pictures");
 var utils=require("../utils");
+var request=require('request');
 
 
-router.get('/*', function(req, res) {
+router.get('/*', function(req, res, next) {
     utils.isMyRequest(req.header("referer"),function(rst){
         var str = rst ? conf.qiniu.thumbnail : "";
         picture.view(req.params[0],function(err,data){
@@ -16,9 +17,15 @@ router.get('/*', function(req, res) {
                 })
             }else{
                 if(data){
-                    utils.areUHttps(req.header('referer'), function (isHttps) {
-                        res.redirect((isHttps ? conf.qiniu.httpsAddress : conf.qiniu.httpAddress)+data.key+str);
-                    })
+                    if (req.header('referer')){
+                        utils.areUHttps(req.header('referer'), function (isHttps) {
+                            res.redirect((isHttps ? conf.qiniu.httpsAddress : conf.qiniu.httpAddress)+data.key+str);
+                        })
+                    }else{
+                        request.get(conf.qiniu.httpAddress+data.key+str)
+                            .pipe(res);
+                    }
+
 
                 }else{
                     res.status(404).render('error', {

@@ -14,6 +14,7 @@
     "mongoose": "^4.1.10",
     "morgan": "~1.6.1",
     "qiniu": "^6.1.8",
+    "request": "^2.69.0",
     "serve-favicon": "~2.3.0"
   }
 }
