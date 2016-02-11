@@ -14,8 +14,7 @@ function isMyRequest(referer,cbk){
 }
 
 function areUHttps(referer,cbk){
-    if (referer == "") cbk(false);
-    if (referer.substr(0,8) == 'https://'){
+    if (referer && (referer.substr(0,8) == 'https://')){
         cbk(true)
     }else{
         cbk(false)
