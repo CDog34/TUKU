@@ -1,9 +1,70 @@
+.clearfix {
+    overflow: auto;
+    zoom: 1;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background: #c2c9d4;
+    padding-top: 50px;
+}
+nav{
+    position: fixed;
+    top: 0;
+    width: 90%;
+    height: 50px;
+    z-index: 10;
+    background-color: rgba(240, 255, 255, 0.7);
+    margin: 0;
+    padding: 0 5%;
+    display: block;
+}
+nav>.banner{
+    font-size: 1.8em;
+    color:#333;
+    display: inline-block;
+    height:100%;
+    overflow: hidden;
+    line-height: 50px;
+}
+nav span{
+    font-size: .4em;
+    display: inline-block;
+    margin-left: 10px;
+    position: relative;
+    bottom: 12px;
+    color: #888888;
+}
+.nav-btn{
+    display: inline-block;
+    height: 50px;
+}
+.nav-btn>a{
+    display: inline-block;
+    color: #333;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    font-size: 1.5em;
+    text-align: center;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+.nav-btn>a:hover{
+    background-color: rgba(184, 184, 184, 0.71);
+    -webkit-transform: translateY(5px);
+    -moz-transform: translateY(5px);
+    -ms-transform: translateY(5px);
+    -o-transform: translateY(5px);
+    transform: translateY(5px);
+}
 .stage{
     height: 300px;
-    width: 80%;
-    background-color: #97D8F9;;
-
-    border-radius: 20px;
+    width: 100%;
+    background-color: #333;
     position: relative;
 }
 .image-item{
@@ -23,7 +84,7 @@
 #image-list{
     text-align: center;
     padding:10px;
-    width:80%;
+    width:95%;
     margin-top: 50px;
     position: relative;
 }
@@ -32,13 +93,9 @@
     margin-right:auto;
 }
 #msg{
-    font-family:"PT Serif",\5FAE\8EDF\6B63\9ED1\9AD4,\5FAE\8F6F\96C5\9ED1,\534E\6587\7EC6\9ED1,Georgia,Times,serif;
-    font-size: 35px;
     text-align: center;
-}
-#msg .msg-line2{
     color:azure;
-    font-size: 30px;
+    font-size: 16px;
 }
 .abs-center{
     position: absolute;
@@ -85,7 +142,7 @@
     text-align: center;
 }
 .pic-detail img{
-    max-width:700px;
+    max-height:400px;
 }
 .pic-detail p{
     line-height:1.4;

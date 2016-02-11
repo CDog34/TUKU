@@ -47,7 +47,7 @@ router.get("/indexPics/:num",function(req,res,next){
 					});
 				return;
 			}
-			picture.getResent(parseInt(req.params.num)*20,20,function(err,data){
+			picture.getResent(parseInt(req.params.num)*50,50,function(err,data){
 				if (err){
 					console.log(err);
 					res.json({
