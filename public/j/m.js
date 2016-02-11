@@ -74,45 +74,60 @@ $m.on('click', function(e) {
 })
 
 
-
-var doUpdate=function(data){
-    if (data.length>1){
-        alert("对不起，您只能一次上传个文件");
-        return false;
-    }
-
-    if(data[0].type.indexOf('image') === -1){
-        alert("您选择的不是图片");
-        return false;
-    }
-    $msg.html("正在上传，请稍后");
-
-    doUpload(genName(data[0].name),data[0],function(data){
-        if (data.success){
-            $("<a>")
-                .attr({href:data.url,'data-id':data.id})
-                .append(
-                    $("<img>")
-                        .attr({src:data.url,'data-id':data.id})
-                        .addClass("image-item").load(function (e) {
-                        $(e.target).addClass("show");
-                    })
-
-                )
-                .addClass("a-wrapper")
-                .click(function(e){
-                    e.preventDefault();
-                    showDetail(e);
-                })
-                .prependTo($imgList)
+function checkFiles(data){
+    var flag=true;
+    for (var i in data){
+        if (parseInt(i) != i ) break;
+        if(data[i].type.indexOf('image') === -1){
+            flag=false;
+            break;
         }
-        $msg.html("上传成功");
-        setTimeout("$msg.html(origWord)",2000);
-    },function(e){
-        $msg.html("呜呜呜出错了呢，请联系作者邮箱：i#cdog.me");
-        setTimeout("$msg.html(origWord)",2000);
-    });
+    }
+    return flag;
 }
+
+var doUpdate=function(picList){
+    if ( !checkFiles(picList)){
+        alert('噫...貌似有奇怪的东西混进去了');
+        return;
+    }
+
+    function uploadWrapper(curPic){
+        $msg.html("正在上传第"+(curPic+1)+"/"+picList.length+"张图片,请稍后");
+        doUpload(genName(picList[curPic].name),picList[curPic],function(data){
+            if (data.success){
+                $("<a>")
+                    .attr({href:data.url,'data-id':data.id})
+                    .append(
+                        $("<img>")
+                            .attr({src:data.url,'data-id':data.id})
+                            .addClass("image-item").load(function (e) {
+                            $(e.target).addClass("show");
+                        })
+
+                    )
+                    .addClass("a-wrapper")
+                    .click(function(e){
+                        e.preventDefault();
+                        showDetail(e);
+                    })
+                    .prependTo($imgList)
+            }
+            if (curPic<picList.length-1){
+                uploadWrapper(++curPic);
+            }else{
+                $msg.html("上传成功");
+                setTimeout("$msg.html(origWord)",2000);
+            }
+
+        },function(e){
+            $msg.html("呜呜呜出错了呢，请联系作者邮箱：i#cdog.me");
+            setTimeout("$msg.html(origWord)",2000);
+        });
+    }
+    uploadWrapper(0);
+};
+
 
 $m.get(0).addEventListener("drop",function(e){
     doUpdate(e.dataTransfer.files);
