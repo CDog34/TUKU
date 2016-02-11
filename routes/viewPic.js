@@ -17,12 +17,12 @@ router.get('/*', function(req, res, next) {
                 })
             }else{
                 if(data){
-                    if (req.header('referer')){
+                    if (req.header('referer') && !rst ){
                         utils.areUHttps(req.header('referer'), function (isHttps) {
                             res.redirect((isHttps ? conf.qiniu.httpsAddress : conf.qiniu.httpAddress)+data.key+str);
                         })
                     }else{
-                        request.get(conf.qiniu.httpAddress+data.key+str)
+                        request.get(conf.qiniu.httpAddress+encodeURIComponent(data.key)+str)
                             .pipe(res);
                     }
 
