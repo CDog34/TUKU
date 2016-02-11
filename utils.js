@@ -13,8 +13,17 @@ function isMyRequest(referer,cbk){
     cbk(flag);
 }
 
+function areUHttps(referer,cbk){
+    if (referer.substr(0,8) == 'https://'){
+        cbk(true)
+    }else{
+        cbk(false)
+    }
+}
+
 var utils={
-	isMyRequest:isMyRequest
+	isMyRequest:isMyRequest,
+    areUHttps:areUHttps
 }
 
 

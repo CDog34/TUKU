@@ -12,7 +12,7 @@ router.get('/genPP', function(req, res) {
 	});
 });
 
-router.post('/cbk',function(req,res){
+router.post('/cbk',function(req,res,next){
 	qn.isQiniuCallback(req.header("Authorization"),req.body,function(){
 		var newPic=new picture({
 			key:req.body.name,
@@ -30,12 +30,9 @@ router.post('/cbk',function(req,res){
 
 	},function(){
 		console.log(req.header("Authorization"),req.body);
-		res.send("这不好玩！");
+		next();
 	});
 	
-});
-router.get('/cbk',function(req,res){
-	res.send("这不好玩！");
 });
 router.get("/indexPics/:num",function(req,res,next){
 	utils.isMyRequest(req.header("referer"),function(rst){
