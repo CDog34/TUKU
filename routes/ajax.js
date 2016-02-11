@@ -7,7 +7,7 @@ var utils=require("../utils");
 
 /* 生成上传凭证. */
 router.get('/genPP', function(req, res, next) {
-	utils.isMyRequest(req.referrer,function(rst){
+	utils.isMyRequest(req.header('referer'),function(rst){
 		if (rst){
 			qn.genPutPolicy(req.query.fname,function(token){
 				res.send(token);
