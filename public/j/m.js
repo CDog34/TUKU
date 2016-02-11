@@ -75,11 +75,17 @@ $m.on('click', function(e) {
 
 
 function checkFiles(data){
+    if (data.length == 0) return false;
+    if (data.length > 10) {
+        alert('一次至多上传10张图片哦');
+        return false;
+    }
     var flag=true;
     for (var i in data){
         if (parseInt(i) != i ) break;
         if(data[i].type.indexOf('image') === -1){
             flag=false;
+            alert('噫...貌似有奇怪的东西混进去了')
             break;
         }
     }
@@ -87,11 +93,7 @@ function checkFiles(data){
 }
 
 var doUpdate=function(picList){
-    if ( !checkFiles(picList)){
-        alert('噫...貌似有奇怪的东西混进去了');
-        return;
-    }
-
+    if ( !checkFiles(picList))return;
     function uploadWrapper(curPic){
         $msg.html("正在上传第"+(curPic+1)+"/"+picList.length+"张图片,请稍后");
         doUpload(genName(picList[curPic].name),picList[curPic],function(data){
