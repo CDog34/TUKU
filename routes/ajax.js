@@ -6,10 +6,17 @@ var conf=require("../conf");
 var utils=require("../utils");
 
 /* 生成上传凭证. */
-router.get('/genPP', function(req, res) {
-  qn.genPutPolicy(req.query.fname,function(token){
-    	res.send(token);
-	});
+router.get('/genPP', function(req, res, next) {
+	utils.isMyRequest(req.referrer,function(rst){
+		if (rst){
+			qn.genPutPolicy(req.query.fname,function(token){
+				res.send(token);
+			});
+		}else{
+			next();
+		}
+	})
+
 });
 
 router.post('/cbk',function(req,res,next){
