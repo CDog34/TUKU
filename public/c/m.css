@@ -136,6 +136,7 @@ nav span{
     width: 100%;
     height: 100%;
     overflow-y: scroll;
+    z-index: 20;
 }
 .popup-window{
     color:white;
