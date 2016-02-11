@@ -35,7 +35,7 @@ app.use(cookieParser());
 
 app.all('*',function(req,res,next){
     res.header('X-Powered-By','TAT v0.3.1');
-    if (app.get('env') === 'development'){
+    if (app.get('env') != 'development'){
         res.header('Strict-Transport-Security','max-age=31536000; includeSubDomains');
     }
     next();
