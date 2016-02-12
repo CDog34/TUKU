@@ -227,6 +227,13 @@ nav span{
     width:100%;
     height:100%;
 }
+.inspirit-by{
+    /* display: inline-block; */
+    line-height: 35px;
+    font-size: 12px;
+    /* border-bottom: 1px solid; */
+    color: azure;
+}
 @media (max-width: 600px) {
     .a-wrapper{
         max-width: calc(100% - 26px);
