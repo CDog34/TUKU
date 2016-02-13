@@ -139,15 +139,26 @@ nav span{
     overflow-y: scroll;
     z-index: 20;
 }
-.popup-window{
-    color:white;
+.popup-window {
+    color: #333;
     text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    height: 80%;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px white;
+    padding: 20px;
+    width: 80%;
+    overflow-y: scroll;
 }
 .pic-detail img{
     max-height:400px;
 }
 .pic-detail p{
     line-height:1.4;
+    overflow-x: scroll;
+    word-break:keep-all;
+    white-space:nowrap;
+    margin: 10px 10%;
 }
 .pic-detail p span{
     font-size: 25px;
