@@ -69,6 +69,7 @@ $('#fu').on('change', function (e) {
 })
 $m.on('click', function(e) {
     e.preventDefault();
+    if (uploadBusy) return;
     $('#fu').click();
 
 })
@@ -92,8 +93,11 @@ function checkFiles(data){
     return flag;
 }
 
+var uploadBusy=false;
+
 var doUpdate=function(picList){
-    if ( !checkFiles(picList))return;
+    if ( !checkFiles(picList) || uploadBusy)return;
+    uploadBusy=true;
     function uploadWrapper(curPic){
         $msg.html("正在上传第"+(curPic+1)+"/"+picList.length+"张图片,请稍后");
         doUpload(genName(picList[curPic].name),picList[curPic],function(data){
@@ -118,11 +122,13 @@ var doUpdate=function(picList){
             if (curPic<picList.length-1){
                 uploadWrapper(++curPic);
             }else{
+                uploadBusy=false;
                 $msg.html("上传成功");
                 setTimeout("$msg.html(origWord)",2000);
             }
 
         },function(e){
+            uploadBusy=false;
             $msg.html("呜呜呜出错了呢，请联系作者邮箱：i#cdog.me");
             setTimeout("$msg.html(origWord)",2000);
         });
