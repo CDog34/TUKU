@@ -250,4 +250,7 @@ nav span{
         max-width: calc(100% - 26px);
         max-width: -webkit-calc(100% - 26px);
     }
+    .pic-detail img{
+        max-width:100%;
+    }
 }
