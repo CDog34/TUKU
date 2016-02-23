@@ -59,7 +59,10 @@ conf.json 配置指南
 * 可配合`Supervisor`等工具实现后台持久运行
 
 
+许可协议
+--------
 
+[The MIT License] [3]
 
 
 
@@ -67,4 +70,5 @@ conf.json 配置指南
 
 [1]: https://tat.pics/v/1456213694491%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7_2016-02-23_%E4%B8%8B%E5%8D%883.46.38__2_.png
 [2]: http://qiniu.com
+[3]: ./LICENSE
 
