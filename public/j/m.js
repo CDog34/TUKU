@@ -43,7 +43,7 @@ function showDetail(e){
     $(".pic-detail img").attr("src", e.target.src || e.target.href);
     $(".pic-detail p span").html(e.target.src || e.target.href);
     $(".btn.btn-cpy").attr("data-clipboard-text",e.target.src || e.target.href);
-    $(".btn-open").attr("href",e.target.src || e.target.href);
+    $(".btn-open").attr("href",(e.target.src || e.target.href) + "?no_thumbnail");
     console.log(e.target)
     $comment.attr('src',"/c/"+$(e.target).data('id'));
     $popup.fadeIn();
