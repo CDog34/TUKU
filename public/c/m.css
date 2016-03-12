@@ -126,6 +126,7 @@ nav span{
     color:#376A84;
 }
 .a-wrapper{
+    max-width: 33%;
     height: 200px;
     overflow: hidden;
     display: inline-block;
