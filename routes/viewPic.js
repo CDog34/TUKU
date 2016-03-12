@@ -17,7 +17,7 @@ router.get('/*', function(req, res, next) {
                 })
             }else{
                 if(data){
-                    if (req.header('referer') && !rst ){
+                    if ((req.query['do_redirect'] != undefined) || (req.header('referer') && !rst)){
                         utils.areUHttps(req.header('referer'), function (isHttps) {
                             res.redirect((isHttps ? conf.qiniu.httpsAddress : conf.qiniu.httpAddress)+data.key+str);
                         })
