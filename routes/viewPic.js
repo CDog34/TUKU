@@ -8,7 +8,7 @@ var request=require('request');
 
 router.get('/*', function(req, res, next) {
     utils.isMyRequest(req.header("referer"),function(rst){
-        var str = rst ? conf.qiniu.thumbnail : "";
+        var str = (rst && req.query['no_thumbnail'] == undefined) ? conf.qiniu.thumbnail : "";
         picture.view(req.params[0],function(err,data){
             if (err){
                 console.log(err);
