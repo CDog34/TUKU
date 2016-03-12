@@ -40,11 +40,10 @@ clip.on('error', function(event) {
 
 
 function showDetail(e){
-    $(".pic-detail img").attr("src", e.target.src || e.target.href);
-    $(".pic-detail p span").html(e.target.src || e.target.href);
-    $(".btn.btn-cpy").attr("data-clipboard-text",e.target.src || e.target.href);
-    $(".btn-open").attr("href",(e.target.src || e.target.href) + "?no_thumbnail");
-    console.log(e.target)
+    $(".pic-detail img").attr("src", window.location.origin+$(e.target).data('url')+"?do_redirect");
+    $(".pic-detail p span").html(window.location.origin+$(e.target).data('url'));
+    $(".btn.btn-cpy").attr("data-clipboard-text",window.location.origin+$(e.target).data('url'));
+    $(".btn-open").attr("href",(window.location.origin+$(e.target).data('url')) + "?no_thumbnail");
     $comment.attr('src',"/c/"+$(e.target).data('id'));
     $popup.fadeIn();
 }
@@ -103,10 +102,10 @@ var doUpdate=function(picList){
         doUpload(genName(picList[curPic].name),picList[curPic],function(data){
             if (data.success){
                 $("<a>")
-                    .attr({href:data.url,'data-id':data.id})
+                    .attr({href:data.url,'data-id':data.id,'data-url':data.url})
                     .append(
                         $("<img>")
-                            .attr({src:data.url,'data-id':data.id})
+                            .attr({src:data.url+'?do_redirect','data-id':data.id,'data-url':data.url})
                             .addClass("image-item").load(function (e) {
                             $(e.target).addClass("show");
                         })
@@ -156,10 +155,10 @@ function doLoadMore(){
             var d=data.pics;
             for (i in d){
                 $("<a>")
-                    .attr({href:data.preDomain+d[i].realAddress,'data-id':d[i]._id})
+                    .attr({href:data.preDomain+d[i].realAddress,'data-id':d[i]._id,'data-url':data.preDomain+d[i].realAddress})
                     .append(
                     $("<img>")
-                        .attr({src:data.preDomain+d[i].realAddress,'data-id':d[i]._id})
+                        .attr({src:data.preDomain+d[i].realAddress+'?do_redirect','data-id':d[i]._id,'data-url':data.preDomain+d[i].realAddress})
                         .addClass("image-item").load(function (e) {
                         $(e.target).addClass("show");
                     })
