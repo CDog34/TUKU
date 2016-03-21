@@ -21,6 +21,7 @@ $(".btn.btn-close").click(function () {
     $cmtWrapper.removeClass('cmt-show')
     $cpyMsg.fadeOut();
     $popup.fadeOut();
+    $imgList.removeClass('popup-open');
 })
 
 
@@ -29,11 +30,14 @@ var clip = new ZeroClipboard($(".btn.btn-cpy")[0], {
     moviePath: "ZeroClipboard.swf"
 } );
 clip.on('aftercopy', function(event) {
-    $cpyMsg.html("复制成功");
+    $cpyMsg.html("复制成功:图片地址已复制到剪贴板");
     $cpyMsg.fadeIn();
+    setTimeout(function () {
+        $cpyMsg.fadeOut()
+    },5000);
 } );
 clip.on('error', function(event) {
-    $cpyMsg.html("复制错误,请手动复制");
+    $cpyMsg.html("您的设备不支持自动复制");
     $cpyMsg.fadeIn();
 } );
 
@@ -46,6 +50,7 @@ function showDetail(e){
     $(".btn-open").attr("href",(window.location.origin+$(e.target).data('url')) + "?no_thumbnail");
     $comment.attr('src',"/c/"+$(e.target).data('id'));
     $popup.fadeIn();
+    $imgList.addClass('popup-open');
 }
 
 $(document).on({

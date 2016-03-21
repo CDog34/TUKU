@@ -5,68 +5,36 @@
 body{
     margin: 0;
     padding: 0;
-    background: #c2c9d4;
-    padding-top: 50px;
     overflow-x: hidden;
-    background-attachment: fixed;
-    background-size: cover;
-    background-image: url(https://tat.pics/v/1457802895176Konachan.com_-_187460_gun_gale_online_kirigaya_kazuto_m-ya_shinon__sao__sword_art_online.jpg?no_thumbnail&do_redirect);
+    background-color: #333;
 }
-nav{
-    position: fixed;
-    top: 0;
-    width: 90%;
-    height: 50px;
-    z-index: 10;
-    background-color: rgba(255, 255, 255, 0.38);
-    margin: 0;
-    padding: 0 5%;
-    display: block;
+header{
+    height: 70vh;
+    background-color: #FFF;
 }
-nav>.banner{
-    font-size: 1.8em;
-    color:#333;
+header h1{
+    margin-top: 0;
+    padding-top: 30vh;
+    text-align: center;
+}
+header span{
     display: inline-block;
-    height:100%;
-    overflow: hidden;
-    line-height: 50px;
-}
-nav span{
-    font-size: .4em;
-    display: inline-block;
-    margin-left: 10px;
-    position: relative;
-    bottom: 12px;
-    color: #888888;
+    margin-top: 0;
+    text-align: center;
+    width: 100%;
 }
 .nav-btn{
-    display: inline-block;
-    height: 50px;
-}
-.nav-btn>a{
-    display: inline-block;
-    color: #333;
-    height: 50px;
-    width: 50px;
-    line-height: 50px;
-    font-size: 1.5em;
+    position: absolute;
+    top: 65vh;
+    width: 100%;
     text-align: center;
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    -ms-transition: all .5s;
-    -o-transition: all .5s;
-    transition: all .5s;
 }
-.nav-btn>a:hover{
-    background-color: rgba(184, 184, 184, 0.71);
-    -webkit-transform: translateY(5px);
-    -moz-transform: translateY(5px);
-    -ms-transform: translateY(5px);
-    -o-transform: translateY(5px);
-    transform: translateY(5px);
+.nav-btn a{
+    color:gray;
+    text-decoration: none;
 }
 .stage{
-    height: 300px;
+    height: 30vh;
     width: 100%;
     background-color: #333;
     position: relative;
@@ -77,20 +45,30 @@ nav span{
     -ms-transition: all 1s;
     -o-transition: all 1s;
     transition: all 1s;
-    height: 100%;
-    margin: 3px;
-    box-shadow: #B0BEC7 1px 1px 4px 0px;
     opacity: 0;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 .image-item.show{
     opacity: 1;
 }
 #image-list{
     text-align: center;
-    padding:10px;
-    width:95%;
-    margin-top: 50px;
+    padding:0px;
+    width:100%;
     position: relative;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
 }
 .block-xcenter{
     margin-left:auto;
@@ -100,6 +78,7 @@ nav span{
     text-align: center;
     color:azure;
     font-size: 16px;
+
 }
 .abs-center{
     position: absolute;
@@ -111,6 +90,17 @@ nav span{
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+.msg{
+     display: block;
+     position: absolute;
+     color: azure;
+     top: 50%;
+     left: 50%;
+    line-height:1.1;
+     transform: translate(-50%,-50%);
+     padding: 20px 40px;
+    background-color: rgba(51, 51, 51, 0.45);
+ }
 .cp{
     width:90%;
 
@@ -125,19 +115,19 @@ nav span{
     color:#376A84;
 }
 .a-wrapper{
-    max-width: 33%;
+    width: 33.33%;
     height: 200px;
     overflow: hidden;
     display: inline-block;
-    width:auto;
     position: relative;
+    margin: -1px 0;
 }
 .popup-gray{
     display: none;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100%;
     overflow-y: scroll;
@@ -146,14 +136,9 @@ nav span{
 .popup-window {
     color: #333;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.9);
-    height: 80%;
-    border-radius: 10px;
-    box-shadow: 1px 1px 1px 1px white;
-    padding: 20px;
-    width: 80%;
+    padding: 0px;
     overflow: hidden;
-    position: relative;
+    position: absolute;
 }
 .popup-window-inner{
     overflow-y: scroll;
@@ -168,15 +153,13 @@ nav span{
     word-break:keep-all;
     white-space:nowrap;
     margin: 10px 10%;
+    display:none;
 }
 .pic-detail p span{
     font-size: 25px;
 }
 .btn{
     display: inline-block;
-    height: 50px;
-    width: 100px;
-    background-color: #66ccff;
     margin: 10px;
     line-height: 50px;
     font-size: 24px;
@@ -189,24 +172,54 @@ nav span{
     user-select: none;
     text-decoration: none;
 }
-.btn-cpy{
-    background-color: #30BF30;
+.ctrl{
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(51, 51, 51, 0.45);
+    opacity:0;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+.popup-window:hover .ctrl{
+    opacity:1;
+}
+.btn-wrapper i{
+    font-size: 75px;
 }
 .btn-close{
-    position: fixed;
-    top: -15px;
-    right: -15px;
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 30px;
     height: 30px;
     line-height: 30px;
-    padding: 0;
+    padding: 10px;
     margin: 0;
-    border-radius: 30px;
-    background-color: #E45E5E;
 }
 .err{
     text-align: center;
     color: #808087;
+}
+.btn-wrapper{
+    display: inline-block;
+    width:50%;
+    float:left;
+    height:100%;
+}
+.btn-wrapper .btn{
+    position: relative;
+    top:50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    
 }
 #btn-load-more{
     display: block;
@@ -263,10 +276,21 @@ nav span{
     /* border-bottom: 1px solid; */
     color: azure;
 }
+.popup-open{
+    filter:blur(7px);
+    -webkit-filter:blur(7px);
+}
+@media (max-width: 1000px ) {
+    .a-wrapper{
+        width:50%;
+    }
+    .pic-detail img{
+        max-width:100%;
+    }
+}
 @media (max-width: 600px) {
     .a-wrapper{
-        max-width: calc(100% - 26px);
-        max-width: -webkit-calc(100% - 26px);
+        width:100%;
     }
     .pic-detail img{
         max-width:100%;
