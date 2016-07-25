@@ -40,16 +40,16 @@ function showDetail(e){
 }
 
 $(document).on({
-    dragleave:function(e){    //拖离
+    dragleave:function(e){
         e.preventDefault();
     },
-    drop:function(e){  //拖后放
+    drop:function(e){
         e.preventDefault();
     },
-    dragenter:function(e){    //拖进
+    dragenter:function(e){
         e.preventDefault();
     },
-    dragover:function(e){    //拖来拖去
+    dragover:function(e){
         e.preventDefault();
     }
 });
