@@ -10,6 +10,7 @@ var routes = require('./routes/index');
 var debug = require('./routes/debug');
 var ajax = require('./routes/ajax');
 var view=require("./routes/viewPic");
+var comment=require("./routes/comment");
 
 var mongoose=require("mongoose");
 
@@ -31,12 +32,21 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.all('*',function(req,res,next){
+    res.header('X-Powered-By','TAT v0.3.1');
+    if (app.get('env') != 'development'){
+        res.header('Strict-Transport-Security','max-age=31536000; includeSubDomains');
+    }
+    next();
+})
 app.use("/s",express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/d', debug);
 app.use('/a',ajax);
 app.use('/v',view);
+app.use('/c',comment);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

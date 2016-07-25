@@ -3,7 +3,8 @@
 		"accessKey" : "",
 		"secretKey" : "",
 		"bucketName" : "",
-		"qnAddress" : "",
+		"httpsAddress" : "",
+		"httpAddress":"",
 		"thumbnail":"!h500"
 	},
 	"siteMeta":{

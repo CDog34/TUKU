@@ -14,9 +14,10 @@ var pictureSchema = new Schema({
 });
 
 
-pictureSchema.statics.getResent= function (number,cbk) {
+pictureSchema.statics.getResent= function (skip,number,cbk) {
     picture.find({canView:true})
         .sort({_id:-1})
+        .skip(skip)
         .limit(number)
         .exec(cbk);
 
@@ -27,7 +28,11 @@ pictureSchema.statics.view= function (id,cbk) {
         .exec(cbk);
 
 };
+pictureSchema.statics.exist= function (id,cbk) {
+    picture.findOne({_id:id})
+        .exec(cbk);
 
+};
 
 
 var picture=mongoose.model("picture",pictureSchema);

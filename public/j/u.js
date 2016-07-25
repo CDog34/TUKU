@@ -1,4 +1,4 @@
-function doUpload(name,file,cbk){
+function doUpload(name,file,cbk,errorCbk){
 	var upForm=new FormData();
 	upForm.append("file",file);
 	upForm.enctype="multipart/form-data";
@@ -12,7 +12,8 @@ function doUpload(name,file,cbk){
 			data: upForm,
 			processData: false,
 			contentType: false,
-			success:cbk
+			success:cbk,
+			error:errorCbk
 		});
     });
 }
