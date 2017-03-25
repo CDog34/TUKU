@@ -1,6 +1,6 @@
 {
   "name": "TUKU-Server",
-  "version": "2.0",
+  "version": "2.0.0",
   "description": "TUKU image hosting service",
   "main": "src/app.js",
   "repository": "https://github.com/CDog34/TUKU.git",
@@ -31,7 +31,6 @@
     "babel-plugin-transform-class-properties": "^6.23.0",
     "babel-preset-latest": "^6.22.0",
     "eslint": "^3.15.0",
-    "eslint-config-google": "^0.7.1",
     "eslint-plugin-import": "^2.2.0",
     "nodemon": "^1.11.0",
     "rimraf": "^2.5.4"
