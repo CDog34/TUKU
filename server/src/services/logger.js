@@ -38,3 +38,10 @@ export function logStartUp(startTime, env, port) {
   logger.info('Server startup in %sms.', duration);
   logger.info('Waiting for client at %s.', port);
 }
+
+export function logRouterSetup(prefix) {
+  logger.info('Setting up router : %s', prefix);
+}
+export function logRequestErr(name, reason) {
+  logger.error('Error when processing request %s : %s', name, reason);
+}

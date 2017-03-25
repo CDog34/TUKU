@@ -1,14 +1,15 @@
 import Koa from 'koa';
+
 import config from './config';
+import {routerInit} from './routes';
 import {logStartUp, logInit, logForRequest} from './services/logger';
+const startTime = Date.now();
 
 const startServer = () => {
-  const startTime = Date.now();
   const app = new Koa();
 
-
   app.use(logForRequest());
-  app.use((ctx) => ctx.body = 'Hello World');
+  routerInit(app);
   app.listen(config.port, logStartUp(startTime, config.env, config.port));
 
 };
