@@ -6,6 +6,11 @@
 
 <script>
   import config from 'config';
+  import {testResource} from 'resource/test';
+
+  (async() => {
+    console.log(await testResource.list());// eslint-disable-line
+  })();
   export default {
     name: config.appEnv,
     data () {

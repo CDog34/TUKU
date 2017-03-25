@@ -10,6 +10,7 @@
     "lint": "eslint --ext  .js,.vue --fix src"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "reset-css": "^2.2.0",
     "vue": "^2.2.2",
     "vue-router": "^2.2.0"

@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import bodyParser from 'koa-better-body';
 import convert from 'koa-convert';
+import kcors from 'kcors';
 
 import config from './config';
 import {routerInit} from './routes';
@@ -13,6 +14,7 @@ const startServer = () => {
   const app = new Koa();
 
   app.use(logForRequest());
+  app.use(convert(kcors()));
   app.use(convert(bodyParser({
     fields: 'body'
   })));
