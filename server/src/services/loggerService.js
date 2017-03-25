@@ -9,14 +9,14 @@ const consoleTransportsOptions = {
   colorize: true,
   level: logLevel
 };
-let logger = null;
+export let logger = new winston.Logger({
+  transports: [
+    new (winston.transports.Console)(consoleTransportsOptions),
+  ]
+});
 
 export function logInit() {
-  logger = new winston.Logger({
-    transports: [
-      new (winston.transports.Console)(consoleTransportsOptions),
-    ]
-  });
+
   logger.info('Log Level: %s', logLevel);
   logger.info('Config env: %s', config.env);
 }
