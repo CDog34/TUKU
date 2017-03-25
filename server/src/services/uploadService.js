@@ -12,15 +12,20 @@ const upyun = new UpYun(
   {apiVersion: 'v2'}
 );
 
-export function uploadFile(file) {
+export function uploadFile(file, options) {
+  const opt = options || {};
+  const useWebp = opt.webp || true;
+  const uploadOptions = {};
+  uploadOptions['x-gmkerl-thumb'] = '';
+  if (useWebp) uploadOptions['x-gmkerl-thumb'] += '/format/webp';
   return new Promise((res, rej) => {
     try {
       const remoteKey = `${upyunConfig.uploadFilePrefix}/${Date.now()}-${encodeURIComponent(file.name)}`;
-      upyun.putFile(remoteKey,
+      upyun.putFile(`${upyunConfig.uploadFilePrefix}/${Date.now()}-${file.name}`,
         file.path,
         file.type,
         true,
-        {},
+        uploadOptions,
         (err, data) => {
           if (err) throw err;
           res(Object.assign({}, data, {remoteKey: remoteKey}));
