@@ -864,15 +864,6 @@ cliui@^2.1.0:
     right-align "^0.1.1"
     wordwrap "0.0.2"
 
-co-body@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.npmjs.org/co-body/-/co-body-4.2.0.tgz#74df20fa73262125dc45482af04e342ea8db3515"
-  dependencies:
-    inflation "~2.0.0"
-    qs "~4.0.0"
-    raw-body "~2.1.2"
-    type-is "~1.6.6"
-
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.npmjs.org/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -1379,6 +1370,12 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
+extend-shallow@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npmjs.org/extend-shallow/-/extend-shallow-2.0.1.tgz#51af7d614ad9a9f610ea1bafbb989d6b1c56890f"
+  dependencies:
+    is-extendable "^0.1.0"
+
 extend@3, extend@~3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/extend/-/extend-3.0.0.tgz#5a474353b9f3353ddd8176dfd37b91c83a46f1d4"
@@ -1470,6 +1467,10 @@ form-data@~2.1.1:
     asynckit "^0.4.0"
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
+
+formidable@^1.0.17:
+  version "1.0.17"
+  resolved "https://registry.npmjs.org/formidable/-/formidable-1.0.17.tgz#ef5491490f9433b705faa77249c99029ae348559"
 
 fresh@^0.5.0:
   version "0.5.0"
@@ -1752,10 +1753,6 @@ infinity-agent@^2.0.0:
   version "2.0.3"
   resolved "https://registry.npmjs.org/infinity-agent/-/infinity-agent-2.0.3.tgz#45e0e2ff7a9eb030b27d62b74b3744b7a7ac4216"
 
-inflation@~2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/inflation/-/inflation-2.0.0.tgz#8b417e47c28f925a45133d914ca1fd389107f30f"
-
 inflection@~1.10.0:
   version "1.10.0"
   resolved "https://registry.npmjs.org/inflection/-/inflection-1.10.0.tgz#5bffcb1197ad3e81050f8e17e21668087ee9eb2f"
@@ -1839,7 +1836,7 @@ is-equal-shallow@^0.1.3:
   dependencies:
     is-primitive "^2.0.0"
 
-is-extendable@^0.1.1:
+is-extendable@^0.1.0, is-extendable@^0.1.1:
   version "0.1.1"
   resolved "https://registry.npmjs.org/is-extendable/-/is-extendable-0.1.1.tgz#62b110e289a471418e3ec36a617d472e301dfc89"
 
@@ -2034,11 +2031,20 @@ kind-of@^3.0.2:
   dependencies:
     is-buffer "^1.0.2"
 
-koa-bodyparser@3.2.0:
-  version "3.2.0"
-  resolved "https://registry.npmjs.org/koa-bodyparser/-/koa-bodyparser-3.2.0.tgz#b916de17e2039fe82650481973d7c294f10b5719"
+koa-better-body@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.npmjs.org/koa-better-body/-/koa-better-body-3.0.2.tgz#f4f7be7d7148422fa023c25771924422f51877fb"
   dependencies:
-    co-body "^4.2.0"
+    extend-shallow "^2.0.1"
+    formidable "^1.0.17"
+    koa-body-parsers "git+https://github.com/tunnckoCore/body-parsers.git"
+    lazy-cache "^2.0.1"
+
+"koa-body-parsers@git+https://github.com/tunnckoCore/body-parsers.git":
+  version "3.0.0"
+  resolved "git+https://github.com/tunnckoCore/body-parsers.git#b515504ef0bfe3e04aa3dd13502d3d90c2d60956"
+  dependencies:
+    raw-body "^2.1.0"
 
 koa-compose@^3.0.0:
   version "3.2.1"
@@ -2105,6 +2111,12 @@ latest-version@^1.0.0:
 lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.npmjs.org/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
+
+lazy-cache@^2.0.1:
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/lazy-cache/-/lazy-cache-2.0.2.tgz#b9190a4f913354694840859f8a8f7084d8822264"
+  dependencies:
+    set-getter "^0.1.0"
 
 lcid@^1.0.0:
   version "1.0.0"
@@ -2686,10 +2698,6 @@ q@^1.1.2:
   version "1.5.0"
   resolved "https://registry.npmjs.org/q/-/q-1.5.0.tgz#dd01bac9d06d30e6f219aecb8253ee9ebdc308f1"
 
-qs@~4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/qs/-/qs-4.0.0.tgz#c31d9b74ec27df75e543a86c78728ed8d4623607"
-
 qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.npmjs.org/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
@@ -2701,7 +2709,7 @@ randomatic@^1.1.3:
     is-number "^2.0.2"
     kind-of "^3.0.2"
 
-raw-body@~2.1.2:
+raw-body@^2.1.0:
   version "2.1.7"
   resolved "https://registry.npmjs.org/raw-body/-/raw-body-2.1.7.tgz#adfeace2e4fb3098058014d08c072dcc59758774"
   dependencies:
@@ -2998,6 +3006,12 @@ set-blocking@~2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/set-blocking/-/set-blocking-2.0.0.tgz#045f9782d011ae9a6803ddd382b24392b3d890f7"
 
+set-getter@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/set-getter/-/set-getter-0.1.0.tgz#d769c182c9d5a51f409145f2fba82e5e86e80376"
+  dependencies:
+    to-object-path "^0.3.0"
+
 set-immediate-shim@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/set-immediate-shim/-/set-immediate-shim-1.0.1.tgz#4b2b1b27eb808a9f8dcc481a58e5e56f599f3f61"
@@ -3251,6 +3265,12 @@ to-fast-properties@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npmjs.org/to-fast-properties/-/to-fast-properties-1.0.2.tgz#f3f5c0c3ba7299a7ef99427e44633257ade43320"
 
+to-object-path@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/to-object-path/-/to-object-path-0.3.0.tgz#297588b7b0e7e0ac08e04e672f85c1f4999e17af"
+  dependencies:
+    kind-of "^3.0.2"
+
 touch@1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/touch/-/touch-1.0.0.tgz#449cbe2dbae5a8c8038e30d71fa0ff464947c4de"
@@ -3295,7 +3315,7 @@ type-check@~0.3.2:
   dependencies:
     prelude-ls "~1.1.2"
 
-type-is@^1.5.5, type-is@~1.6.6:
+type-is@^1.5.5:
   version "1.6.14"
   resolved "https://registry.npmjs.org/type-is/-/type-is-1.6.14.tgz#e219639c17ded1ca0789092dd54a03826b817cb2"
   dependencies:

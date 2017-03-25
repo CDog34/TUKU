@@ -37,7 +37,7 @@ export class Router {
       try {
         ctx.body = await handler(ctx);
       } catch (err) {
-        this.handleError(uri, err, ctx)
+        this.handleError(uri, err, ctx);
       }
     });
   }

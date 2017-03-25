@@ -1,8 +1,10 @@
 import {setupRouter} from '../services/router';
 import {homeRoutes} from './home';
+import {uploadRoutes} from './upload';
 
 const routers = [
-  homeRoutes
+  homeRoutes,
+  uploadRoutes
 ];
 
 export function routerInit(app) {
