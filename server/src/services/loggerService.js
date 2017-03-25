@@ -45,3 +45,8 @@ export function logRouterSetup(prefix) {
 export function logRequestErr(name, reason) {
   logger.error('Error when processing request %s : %s', name, reason);
 }
+export function logDBStartUp(err) {
+  const message = err ? `Error when trying to connect to DB : ${err}` : 'DB Link start';
+  const logMode = err ? 'error' : 'info';
+  logger[logMode](message);
+}

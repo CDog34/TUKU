@@ -1,4 +1,5 @@
 import UpYun from 'upyun';
+import tools from 'upyun/tools';
 import config from '../config';
 
 const {upyun : upyunConfig} = config;
@@ -14,17 +15,32 @@ const upyun = new UpYun(
 export function uploadFile(file) {
   return new Promise((res, rej) => {
     try {
-      upyun.putFile(`${upyunConfig.uploadFilePrefix}/${Date.now()}-${file.name}`,
+      const remoteKey = `${upyunConfig.uploadFilePrefix}/${Date.now()}-${encodeURIComponent(file.name)}`;
+      upyun.putFile(remoteKey,
         file.path,
         file.type,
         true,
         {},
         (err, data) => {
           if (err) throw err;
-          res(data)
+          res(Object.assign({}, data, {remoteKey: remoteKey}));
         });
     } catch (err) {
-      rej(err)
+      rej(err);
+    }
+  });
+}
+
+export function md5sumFile(file) {
+  return new Promise((res, rej) => {
+    try {
+      tools.md5sumFile(file.path,
+        (err, data) => {
+          if (err) throw err;
+          res(data);
+        });
+    } catch (err) {
+      rej(err);
     }
   });
 }

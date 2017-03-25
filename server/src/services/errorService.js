@@ -16,6 +16,6 @@ export class ErrorBase {
       type: this.errorType,
       extra: this.extraData,
       message: this.humanReadableMessage
-    }
+    };
   }
 }
