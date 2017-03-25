@@ -1,5 +1,5 @@
 import KoaRouter from 'koa-router';
-import {logRequestErr, logRouterSetup} from './logger';
+import {logRequestErr, logRouterSetup} from './loggerService';
 
 export const Methods = {
   GET: 'get',

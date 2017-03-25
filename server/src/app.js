@@ -4,7 +4,7 @@ import convert from 'koa-convert';
 
 import config from './config';
 import {routerInit} from './routes';
-import {logStartUp, logInit, logForRequest} from './services/logger';
+import {logStartUp, logInit, logForRequest} from './services/loggerService';
 const startTime = Date.now();
 
 const startServer = () => {

@@ -1,6 +1,6 @@
-import {setupRouter} from '../services/router';
-import {homeRoutes} from './home';
-import {uploadRoutes} from './upload';
+import {setupRouter} from '../services/routerService';
+import {homeRoutes} from './homeRoutes';
+import {uploadRoutes} from './uploadRoutes';
 
 const routers = [
   homeRoutes,

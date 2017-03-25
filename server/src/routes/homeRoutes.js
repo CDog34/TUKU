@@ -1,4 +1,4 @@
-import {Router, Methods} from '../services/router';
+import {Router, Methods} from '../services/routerService';
 import config from '../config';
 
 export const homeRoutes = new Router('/');
