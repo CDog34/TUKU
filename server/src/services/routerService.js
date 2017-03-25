@@ -24,7 +24,7 @@ export class Router {
       ctx.status = 500;
     } else {
       ctx.body = err.toObject();
-      ctx.status = err.statusCode;
+      ctx.status = err.httpStatusCode;
     }
   }
 
