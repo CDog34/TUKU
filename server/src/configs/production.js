@@ -18,7 +18,7 @@ export const envConfig = {
   CDNBase: '//tuku.izhai.net/',
 
   upyun: {
-    uploadFilePrefix: '',
+    uploadFilePrefix: 'imageHosting',
     bucket: 'tuku-image-hosting',
     endpoint: 'v0.api.upyun.com',
     operator: secretConfig.operator,
