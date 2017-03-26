@@ -29,12 +29,13 @@ export class Router {
   }
 
   bindHandler(options, handler) {
-    const {uri, method} = options;
+    const {uri, method, noReturn} = options;
     if (!uri) {
       throw new Error('No URL');
     }
-    this.koaRouter[method](uri, async(ctx) => {
+    this.koaRouter[method](uri, async(ctx, next) => {
       try {
+        if (noReturn) return await handler(ctx, next);
         ctx.body = await handler(ctx);
       } catch (err) {
         this.handleError(uri, err, ctx);
@@ -47,9 +48,10 @@ export class Router {
     if (!options.uri) {
       throw new Error('No URL');
     }
+    const noReturn = options.noReturn || false;
     const uri = options.uri;
     return {
-      bind: (handler) => this.bindHandler({uri, method}, handler)
+      bind: (handler) => this.bindHandler({uri, method, noReturn}, handler)
     };
   }
 }

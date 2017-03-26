@@ -7,6 +7,7 @@
   "author": "CDog<i@cdog.me>",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.15.3",
     "bcrypt": "^1.0.2",
     "kcors": "^1.3.2",
     "koa": "^2.0.1",

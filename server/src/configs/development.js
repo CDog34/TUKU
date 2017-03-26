@@ -19,5 +19,10 @@ export const envConfig = {
     endpoint: 'v0.api.upyun.com',
     operator: secretConfig.operator,
     password: secretConfig.password,
+  },
+  weibo:{
+    appKey:secretConfig.weiboKey,
+    appSecret:secretConfig.weiboSecret,
+    callbackUrl:'https://tuku-api.izhai.net/weibo/callback'
   }
 };

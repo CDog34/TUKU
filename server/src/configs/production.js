@@ -1,5 +1,3 @@
-
-
 const dbUrl = process.env.APP_DB_URL || '';
 import {logger} from '../services/loggerService';
 let secretConfig = null;
@@ -23,5 +21,10 @@ export const envConfig = {
     endpoint: 'v0.api.upyun.com',
     operator: secretConfig.operator,
     password: secretConfig.password,
+  },
+  weibo: {
+    appKey: secretConfig.weiboKey,
+    appSecret: secretConfig.weiboSecret,
+    callbackUrl: 'https://tuku-api.izhai.net/weibo/callback'
   }
 };
