@@ -16,7 +16,7 @@ export function uploadFile(file, options) {
   const opt = options || {};
   const useWebp = opt.webp || false;
   const uploadOptions = {};
-  uploadOptions['x-gmkerl-thumb'] = '';
+  uploadOptions['x-gmkerl-thumb'] = '/progressive/true';
   if (useWebp) uploadOptions['x-gmkerl-thumb'] += '/format/webp';
   return new Promise((res, rej) => {
     try {
