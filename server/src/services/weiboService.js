@@ -18,7 +18,7 @@ export async function getAccessToken(code) {
       'client_id': weiboConfig.appKey,
       'client_secret': weiboConfig.appSecret,
       'grant_type': 'authorization_code',
-      'redirect_uri': 'tuku.moe'
+      'redirect_uri': encodeURIComponent(weiboConfig.callbackUrl)
     },
     method: 'post'
   };
