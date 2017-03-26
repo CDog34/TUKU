@@ -14,7 +14,7 @@ const upyun = new UpYun(
 
 export function uploadFile(file, options) {
   const opt = options || {};
-  const useWebp = opt.webp || true;
+  const useWebp = opt.webp || false;
   const uploadOptions = {};
   uploadOptions['x-gmkerl-thumb'] = '';
   if (useWebp) uploadOptions['x-gmkerl-thumb'] += '/format/webp';

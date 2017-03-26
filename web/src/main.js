@@ -5,6 +5,7 @@ import App from './App';
 import router from './router';
 
 import 'reset-css/reset.css';
+import '../static/webpjs';
 
 Vue.config.productionTip = false;
 

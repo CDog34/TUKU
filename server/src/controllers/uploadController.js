@@ -9,7 +9,7 @@ export async function handleImageUpload(image) {
   if (existImage) return {
     image: existImage,
     CDNBase: config.CDNBase,
-    redirectUrl: `${config.CDNBase}/${existImage.remoteKey}`
+    redirectUrl: `${config.CDNBase}${existImage.remoteKey}`
   };
   const newImage = new Image();
   newImage.name = encodeURIComponent(image.name);
