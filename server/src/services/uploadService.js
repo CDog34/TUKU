@@ -20,8 +20,9 @@ export function uploadFile(file, options) {
   if (useWebp) uploadOptions['x-gmkerl-thumb'] += '/format/webp';
   return new Promise((res, rej) => {
     try {
-      const remoteKey = `${upyunConfig.uploadFilePrefix}/${Date.now()}-${encodeURIComponent(file.name)}`;
-      upyun.putFile(`${upyunConfig.uploadFilePrefix}/${Date.now()}-${file.name}`,
+      const time = Date.now();
+      const remoteKey = `${upyunConfig.uploadFilePrefix}/${time}-${encodeURIComponent(file.name)}`;
+      upyun.putFile(`${upyunConfig.uploadFilePrefix}/${time}-${file.name}`,
         file.path,
         file.type,
         true,

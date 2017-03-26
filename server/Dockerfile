@@ -1,6 +1,6 @@
 FROM node:7.6
 ENV WD /proj
-ENV APP_PORT 8081
+ENV APP_PORT 12530
 ENV APP_ENV staging
 RUN mkdir -p $WD
 WORKDIR $WD
