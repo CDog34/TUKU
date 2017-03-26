@@ -27,7 +27,8 @@ module.exports = {
       '@': resolve('src'),
       'config': resolve('src/configs/') + configName,
       'service': resolve('src/services'),
-      'resource': resolve('src/resources')
+      'resource': resolve('src/resources'),
+      'component': resolve('src/components')
     }
   },
   module: {

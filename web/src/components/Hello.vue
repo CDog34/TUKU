@@ -1,31 +1,33 @@
 <template>
-  <div class="hello">
-    {{msg}}
+  <div class="content-container">
+    <UploadArea/>
   </div>
 </template>
 
 <script>
   import config from 'config';
-  import {testResource} from 'resource/test';
+  import UploadArea from 'component/UploadArea';
 
-  (async() => {
-    console.log(await testResource.list());// eslint-disable-line
-  })();
   export default {
     name: config.appEnv,
     data () {
       return {
         msg: `Current Env: ${config.appEnv}`
       };
-    }
+    },
+    components: {UploadArea}
   };
 </script>
 
 <style scoped>
-  .hello {
+  .content-container {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex-shrink: 0;
+    position: relative;
   }
 </style>
