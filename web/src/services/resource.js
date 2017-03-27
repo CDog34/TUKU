@@ -8,10 +8,12 @@ export class Resource {
   };
 
   static setHeader(key, value) {
+    console.log('[Dbg.jq:key,value]:', key, value); // eslint-disable-line
     Resource.header[key] = value;
   }
 
   static getHeader() {
+    console.log('[Dbg.jq:Resource.header]:', Resource.header); // eslint-disable-line
     return Resource.header;
   }
 
