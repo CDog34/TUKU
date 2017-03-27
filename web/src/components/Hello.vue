@@ -23,9 +23,9 @@
       checkWeiboCode: async function () {
         const code = this.$route.query.code;
         if (!code) return null;
+        this.$router.replace(this.$route.path);
         const res = await WeiboService.loginFromWeibo(code);
         console.log('[Dbg.jq:userId]:', res); // eslint-disable-line
-        this.$router.replace(this.$route.path);
       }
     },
     components: {UploadArea}

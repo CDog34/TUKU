@@ -9,7 +9,9 @@ homeRoutes
     uri: '/'
   })
   .bind(async(ctx) => {
+    const user = await ctx.getUser();
     return {
+      user,
       apiVersion: config.version,
       time: Date.now()
     }
