@@ -25,6 +25,6 @@ export const envConfig = {
   weibo: {
     appKey: secretConfig.weiboKey,
     appSecret: secretConfig.weiboSecret,
-    callbackUrl: 'https://tuku-api.izhai.net/weibo/callback'
+    callbackUrl: 'https://tuku.moe'
   }
 };

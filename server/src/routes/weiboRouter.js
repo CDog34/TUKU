@@ -14,7 +14,8 @@ weiboRouter
     const code = ctx.query.code;
     if (!code) throw 'no Code';
     const res = await handleWeiboCallback(code);
-    return await createOrUpdateUserFromWeibo(res.profile);
+    const user = await createOrUpdateUserFromWeibo(res.profile);
+    return {userId: user._id};
   });
 
 weiboRouter
