@@ -1,5 +1,6 @@
 import {Router, Methods} from '../services/routerService';
 import {handleWeiboCallback} from '../controllers/weiboController';
+import {createOrUpdateUserFromWeibo} from '../controllers/userController';
 import config from '../config';
 
 export const weiboRouter = new Router('/weibo');
@@ -12,7 +13,8 @@ weiboRouter
   .bind(async(ctx) => {
     const code = ctx.query.code;
     if (!code) throw 'no Code';
-    return await handleWeiboCallback(code)
+    const res = await handleWeiboCallback(code);
+    return await createOrUpdateUserFromWeibo(res.profile);
   });
 
 weiboRouter
