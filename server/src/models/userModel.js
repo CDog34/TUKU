@@ -1,5 +1,10 @@
 import mongoose from 'mongoose';
 
+export const RoleEnum = {
+  USER: 100,
+  ADMIN: 200
+};
+
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -15,6 +20,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     index: true,
     default: true
+  },
+  role: {
+    type: Number,
+    default: RoleEnum.USER
   },
   updateAt: {
     type: Number,

@@ -1,6 +1,7 @@
 import {Router, Methods} from '../services/routerService';
 import {handleWeiboCallback} from '../controllers/weiboController';
 import {createOrUpdateUserFromWeibo} from '../controllers/userController';
+import {startWeiboSession} from '../controllers/sessionController';
 import config from '../config';
 
 export const weiboRouter = new Router('/weibo');
@@ -15,7 +16,7 @@ weiboRouter
     if (!code) throw 'no Code';
     const res = await handleWeiboCallback(code);
     const user = await createOrUpdateUserFromWeibo(res.profile);
-    return {userId: user._id};
+    return await startWeiboSession(user._id);
   });
 
 weiboRouter

@@ -8,7 +8,9 @@ homeRoutes
     method: Methods.GET,
     uri: '/'
   })
-  .bind(() => ({
-    apiVersion: config.version,
-    time: Date.now()
-  }));
+  .bind(async(ctx) => {
+    return {
+      apiVersion: config.version,
+      time: Date.now()
+    }
+  });

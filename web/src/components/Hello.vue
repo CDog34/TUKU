@@ -23,9 +23,8 @@
       checkWeiboCode: async function () {
         const code = this.$route.query.code;
         if (!code) return null;
-        const res = await WeiboService.getUserId(code);
-        const userId = res.userId;
-        console.log('[Dbg.jq:userId]:', userId); // eslint-disable-line
+        const res = await WeiboService.loginFromWeibo(code);
+        console.log('[Dbg.jq:userId]:', res); // eslint-disable-line
         this.$router.replace(this.$route.path);
       }
     },
