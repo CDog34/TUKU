@@ -26,7 +26,7 @@
       };
     },
     created: function () {
-      this.$root.$on('profileUpdate', this.loadProfile);
+      this.$root.$on('profileUpdate', this.loadProfile.bind(this));
     },
     methods: {
       loadProfile: async function () {
@@ -34,7 +34,7 @@
       }
     },
     beforeDestroy: function () {
-      this.$root.$off('profileUpdate', this.loadProfile);
+      this.$root.$off('profileUpdate', this.loadProfile.bind(this));
     }
   };
 </script>
