@@ -37,7 +37,7 @@ export class Router {
     this.koaRouter[method](uri, async(ctx, next) => {
       try {
         if (!!roles && roles.length > 0) {
-          const user = ctx.getUser();
+          const user = await ctx.getUser();
           if (!user || roles.indexOf(user.role) === -1) throw new ErrorBase('NOT_PREMITTED', 403)
         }
         if (noReturn) return await handler(ctx, next);
