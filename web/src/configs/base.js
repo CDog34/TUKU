@@ -1,5 +1,6 @@
 'use strict';
 
 export default {
-  appName: 'tuku'
+  appName: 'tuku',
+  appVersion: '2.0.0'
 };
