@@ -15,7 +15,9 @@ export function generateToken() {
 export function securityMiddleWare() {
   const getAuthKey = (ctx) => ctx.headers['x-tuku-auth'] || '';
   return async(ctx, next) => {
+    ctx._cachedUser = null;
     ctx.getUser = async() => {
+      if (ctx._cachedUser) return ctx._cachedUser;
       const authKeyArr = getAuthKey(ctx).split('||');
       const sessionId = authKeyArr[0];
       const token = authKeyArr[1];
@@ -27,6 +29,7 @@ export function securityMiddleWare() {
         await session.remove();
         return null;
       }
+      ctx._cachedUser = user;
       return user;
     };
     await next();

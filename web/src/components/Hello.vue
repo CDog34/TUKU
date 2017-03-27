@@ -14,6 +14,7 @@
     name: config.appEnv,
     created: function () {
       this.checkWeiboCode();
+      this.$root.$on('profileUpdate', () => console.log('hhh')); // eslint-disable-line
     },
     data () {
       return {

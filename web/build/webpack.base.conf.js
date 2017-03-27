@@ -28,7 +28,8 @@ module.exports = {
       'config': resolve('src/configs/') + configName,
       'service': resolve('src/services'),
       'resource': resolve('src/resources'),
-      'component': resolve('src/components')
+      'component': resolve('src/components'),
+      'main': resolve('src/main.js')
     }
   },
   module: {

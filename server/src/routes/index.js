@@ -2,11 +2,13 @@ import {setupRouter} from '../services/routerService';
 import {homeRoutes} from './homeRoutes';
 import {uploadRoutes} from './uploadRoutes';
 import {weiboRouter} from './weiboRouter';
+import {userRoutes} from './userRoutes';
 
 const routers = [
   homeRoutes,
   uploadRoutes,
-  weiboRouter
+  weiboRouter,
+  userRoutes
 ];
 
 export function routerInit(app) {
