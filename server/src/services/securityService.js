@@ -12,8 +12,8 @@ export function generateToken() {
   });
 }
 
-export function serurityMiddleWare() {
-  const getAuthKey = (ctx) => ctx.headers['X-Tuku-Auth'] || '';
+export function securityMiddleWare() {
+  const getAuthKey = (ctx) => ctx.headers['x-tuku-auth'] || '';
   return async(ctx, next) => {
     ctx.getUser = async() => {
       const authKeyArr = getAuthKey(ctx).split('||');
@@ -22,11 +22,12 @@ export function serurityMiddleWare() {
       if (!sessionId || !token) return null;
       const session = await Session.getSession(sessionId, token);
       if (!session) return null;
-      const user = User.findById(session.userId);
+      const user = await User.findById(session.userId);
       if (!user || !user.isActive) {
         await session.remove();
         return null;
       }
+      return user;
     };
     await next();
   }

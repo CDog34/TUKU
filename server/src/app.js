@@ -7,7 +7,7 @@ import config from './config';
 import {routerInit} from './routes';
 import {logStartUp, logInit, logForRequest} from './services/loggerService';
 import {startDBLink} from './services/dbService';
-import {serurityMiddleWare} from './services/securityService';
+import {securityMiddleWare} from './services/securityService';
 
 const startTime = Date.now();
 
@@ -16,7 +16,7 @@ const startServer = () => {
 
   app.use(logForRequest());
   app.use(convert(kcors()));
-  app.use(serurityMiddleWare());
+  app.use(securityMiddleWare());
   app.use(convert(bodyParser({
     fields: 'body'
   })));
