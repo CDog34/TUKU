@@ -1,33 +1,33 @@
 import {LocalStorageService} from 'service/localStorage';
 import {Resource} from 'service/resource';
 
-export class SessionSrvice {
+export class SessionService {
   static sessionCache = null;
 
   static startSession(session) {
     LocalStorageService.setItem('session', session);
-    SessionSrvice.sessionCache = session;
+    SessionService.sessionCache = session;
     Resource.setHeader('X-Tuku-Auth', `${session._id}||${session.token}`);
   }
 
   static killSession() {
     LocalStorageService.removeItem('session');
-    SessionSrvice.sessionCache = null;
+    SessionService.sessionCache = null;
     Resource.setHeader('X-Tuku-Auth', null);
   }
 
   static initSession() {
-    const session = SessionSrvice.getSession();
+    const session = SessionService.getSession();
     if (!session)  return null;
-    SessionSrvice.sessionCache = session;
+    SessionService.sessionCache = session;
     Resource.setHeader('X-Tuku-Auth', `${session._id}||${session.token}`);
   }
 
   static getSession() {
-    return SessionSrvice.sessionCache || LocalStorageService.getItem('session');
+    return SessionService.sessionCache || LocalStorageService.getItem('session');
   }
 
   static isExist() {
-    return !!SessionSrvice.getSession();
+    return !!SessionService.getSession();
   }
 }

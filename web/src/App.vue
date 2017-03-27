@@ -8,11 +8,11 @@
 </template>
 
 <script>
-  import {SessionSrvice} from 'service/session';
+  import {SessionService} from 'service/session';
   export default {
     name: 'app',
     created: function () {
-      SessionSrvice.initSession();
+      SessionService.initSession();
     }
   };
 </script>

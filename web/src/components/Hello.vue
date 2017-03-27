@@ -8,6 +8,7 @@
   import config from 'config';
   import UploadArea from 'component/UploadArea';
   import {WeiboService} from 'service/weibo';
+  import {SessionService} from 'service/session';
 
   export default {
     name: config.appEnv,
@@ -25,7 +26,7 @@
         if (!code) return null;
         this.$router.replace(this.$route.path);
         const res = await WeiboService.loginFromWeibo(code);
-        console.log('[Dbg.jq:userId]:', res); // eslint-disable-line
+        SessionService.startSession(res);
       }
     },
     components: {UploadArea}
