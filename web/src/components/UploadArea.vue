@@ -39,9 +39,9 @@
   import {UploadService} from 'service/upload';
   import _ from 'lodash';
 
-  (async() => {
+  const testFunc = async() => {
     console.log(await testResource.list());// eslint-disable-line
-  })();
+  };
   export default {
     name: config.appEnv,
     data () {
@@ -53,6 +53,7 @@
       };
     },
     created: function () {
+      testFunc();
       const dummyInput = document.createElement('input');
       dummyInput.setAttribute('type', 'file');
       dummyInput.setAttribute('accept', 'image/*');
