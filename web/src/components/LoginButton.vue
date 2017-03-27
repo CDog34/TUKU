@@ -26,15 +26,15 @@
       };
     },
     created: function () {
-      this.$root.$on('profileUpdate', this.loadProfile.bind(this));
+      this.$root.$on('profileUpdate', this.loadProfile);
     },
     methods: {
       loadProfile: async function () {
-        this.data = await ProfileService.getMyProfile();
+        this.myProfile = await ProfileService.getMyProfile();
       }
     },
     beforeDestroy: function () {
-      this.$root.$off('profileUpdate', this.loadProfile.bind(this));
+      this.$root.$off('profileUpdate', this.loadProfile);
     }
   };
 </script>
