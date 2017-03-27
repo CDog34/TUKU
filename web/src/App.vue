@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <nav>
-      <h1>TUKU Image Hosting Service</h1>
+      <div class="main-container">
+        <h1>TUKU Image Hosting Service</h1>
+      </div>
+      <LoginButton/>
     </nav>
     <router-view/>
   </div>
@@ -9,10 +12,14 @@
 
 <script>
   import {SessionService} from 'service/session';
+  import LoginButton from 'component/LoginButton';
   export default {
     name: 'app',
     created: function () {
       SessionService.initSession();
+    },
+    components: {
+      LoginButton
     }
   };
 </script>
@@ -35,6 +42,10 @@
     display: flex;
     align-items: center;
     box-sizing: border-box;
+  }
+
+  .main-container {
+    flex: 1;
   }
 
   h1 {

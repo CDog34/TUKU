@@ -1,7 +1,6 @@
 import {LocalStorageService} from 'service/localStorage';
 import {Resource} from 'service/resource';
 import {ProfileService} from 'service/profile';
-import {rootComponent} from 'main';
 
 export class SessionService {
   static sessionCache = null;
@@ -11,7 +10,6 @@ export class SessionService {
     SessionService.sessionCache = session;
     Resource.setHeader('X-Tuku-Auth', `${session._id}||${session.token}`);
     ProfileService.loadMyProfileFromRemote();
-    rootComponent.$emit('profileUpdate');
   }
 
   static killSession() {
@@ -19,7 +17,6 @@ export class SessionService {
     SessionService.sessionCache = null;
     Resource.setHeader('X-Tuku-Auth', null);
     ProfileService.clearCache();
-    rootComponent.$emit('profileUpdate');
   }
 
   static async initSession() {
@@ -27,9 +24,7 @@ export class SessionService {
     if (!session)  return null;
     SessionService.sessionCache = session;
     Resource.setHeader('X-Tuku-Auth', `${session._id}||${session.token}`);
-    const res = await ProfileService.getMyProfile();
-    console.log('[Dbg.jq:res]:', res); // eslint-disable-line
-    rootComponent.$emit('profileUpdate');
+    ProfileService.loadMyProfileFromRemote();
   }
 
   static getSession() {
