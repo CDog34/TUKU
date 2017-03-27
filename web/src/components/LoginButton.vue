@@ -4,7 +4,7 @@
   </a>
   <div class="info-container" v-else-if="!!myProfile">
     <div class="avatar"
-         v-bind:style="{backgroundImage:`url(${myProfile.avatarUrl})`}"></div>
+         v-bind:style="{backgroundImage:`url(${myProfile.avatarUrl.replace('http','https')})`}"></div>
     <div class="info">
       <p class="name">{{myProfile.name}}</p>
       <p class="desc">{{myProfile.description}}</p>
