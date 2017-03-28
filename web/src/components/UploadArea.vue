@@ -1,8 +1,8 @@
 <template>
   <div class="upload-area"
        v-on:click="clickBox"
-       v-on:dragenter.stop.prevent
-       v-on:dragover.stop.prevent
+       v-on:dragenter.stop.prevent=""
+       v-on:dragover.stop.prevent=""
        v-on:drop.stop.prevent="handleFileDrop"
   >
     <transition-group name="image-upload-transition" tag="div">
