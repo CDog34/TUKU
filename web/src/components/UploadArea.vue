@@ -12,7 +12,7 @@
          v-on:click.stop=""
          target="_blank"
       >
-        <img v-bind:src="uploadedImage.redirectUrl"
+        <img v-bind:src="uploadedImage.redirectUrl + '!/fh/200' + (webp ? '/format/webp' : '')"
              alt="" class="preview-image">
       </a>
     </transition-group>
@@ -36,6 +36,7 @@
 <script>
   import config from 'config';
   import {UploadService} from 'service/upload';
+  import {ImageService} from 'service/image';
   import _ from 'lodash';
 
   export default {
@@ -45,16 +46,18 @@
         msg: `图片上床区域`,
         uploadQueue: [],
         uploading: false,
-        uploadedImages: []
+        uploadedImages: [],
+        webp: false
       };
     },
-    created: function () {
+    created: async function () {
       const dummyInput = document.createElement('input');
       dummyInput.setAttribute('type', 'file');
       dummyInput.setAttribute('accept', 'image/*');
       dummyInput.setAttribute('multiple', '');
       dummyInput.addEventListener('change', () => this.handleFileList(dummyInput.files));
       this.dummyInput = dummyInput;
+      this.webp = await ImageService.checkWebp();
     },
     methods: {
       clickBox: function () {
