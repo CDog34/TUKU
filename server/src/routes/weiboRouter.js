@@ -16,7 +16,8 @@ weiboRouter
     if (!code) throw 'no Code';
     const res = await handleWeiboCallback(code);
     const user = await createOrUpdateUserFromWeibo(res.profile);
-    return await startWeiboSession(user._id);
+    const existedSession = await ctx.getSession();
+    return await startWeiboSession(user._id, existedSession);
   });
 
 weiboRouter
