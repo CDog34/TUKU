@@ -11,7 +11,7 @@ export async function handleImageUpload(image, userId) {
   const existImages = await Image.findByMd5sum(checkSum);
   let existImage = null;
   if (!!existImages && existImages.length) {
-    existImage = _.find(existImages, image => image.ownerId === userId);
+    existImage = _.find(existImages, (img) => img.ownerId === userId.toString());
     if (existImage)
       return {
         image: existImage,
