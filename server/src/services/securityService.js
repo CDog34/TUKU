@@ -30,6 +30,7 @@ export function securityMiddleWare() {
     };
     ctx.getUser = async() => {
       const session = await ctx.getSession();
+      if (!session) return null;
       const user = await User.findById(session.userId);
       if (!user || !user.isActive) {
         await session.remove();

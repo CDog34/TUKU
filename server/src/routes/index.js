@@ -3,12 +3,14 @@ import {homeRoutes} from './homeRoutes';
 import {uploadRoutes} from './uploadRoutes';
 import {weiboRouter} from './weiboRouter';
 import {userRoutes} from './userRoutes';
+import {imageRoutes} from './imageRoutes';
 
 const routers = [
   homeRoutes,
   uploadRoutes,
   weiboRouter,
-  userRoutes
+  userRoutes,
+  imageRoutes
 ];
 
 export function routerInit(app) {

@@ -13,6 +13,7 @@
 <script>
   import {SessionService} from 'service/session';
   import LoginButton from 'component/LoginButton';
+
   export default {
     name: 'app',
     created: function () {

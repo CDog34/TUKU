@@ -1,20 +1,23 @@
 <template>
-  <div class="content-container">
-    <UploadArea/>
+  <div class="scroll-wrapper">
+    <div class="content-container">
+      <UploadArea/>
+      <UploadHistory/>
+    </div>
   </div>
 </template>
 
 <script>
   import config from 'config';
   import UploadArea from 'component/UploadArea';
+  import UploadHistory from 'component/UploadHistory';
   import {WeiboService} from 'service/weibo';
   import {SessionService} from 'service/session';
 
   export default {
-    name: config.appEnv,
+    name: 'index',
     created: function () {
       this.checkWeiboCode();
-      this.$root.$on('profileUpdate', () => console.log('hhh')); // eslint-disable-line
     },
     data () {
       return {
@@ -30,19 +33,24 @@
         SessionService.startSession(res);
       }
     },
-    components: {UploadArea}
+    components: {UploadArea, UploadHistory}
   };
 </script>
 
 <style scoped>
-  .content-container {
+  .scroll-wrapper {
     flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow-x: hidden;
     overflow-y: auto;
-    flex-shrink: 0;
+    width: 100%;
+  }
+
+  .content-container {
     position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 48px 20px;
+    box-sizing: border-box;
   }
 </style>

@@ -15,3 +15,4 @@ export const rootComponent = new Vue({
   template: '<App/>',
   components: {App}
 });
+

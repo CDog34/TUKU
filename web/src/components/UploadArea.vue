@@ -35,13 +35,9 @@
 
 <script>
   import config from 'config';
-  import {testResource} from 'resource/test';
   import {UploadService} from 'service/upload';
   import _ from 'lodash';
 
-  const testFunc = async() => {
-    console.log(await testResource.list());// eslint-disable-line
-  };
   export default {
     name: config.appEnv,
     data () {
@@ -53,7 +49,6 @@
       };
     },
     created: function () {
-      testFunc();
       const dummyInput = document.createElement('input');
       dummyInput.setAttribute('type', 'file');
       dummyInput.setAttribute('accept', 'image/*');
@@ -123,13 +118,12 @@
 
 <style scoped>
   .upload-area {
+    height: 55vh;
     min-height: 400px;
-    width: 80%;
-    height: 80%;
     position: relative;
     border-radius: 8px;
-    border: dashed 8px rgba(51, 51, 51, 0.42);
-    color: rgba(51, 51, 51, 0.42);
+    border: dashed 8px rgba(0, 0, 0, .32);
+    color: rgba(0, 0, 0, .24);
     box-sizing: border-box;
     overflow-y: auto;
   }
