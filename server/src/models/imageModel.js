@@ -23,7 +23,7 @@ const imageSchema = new mongoose.Schema({
 });
 
 imageSchema.statics.findByMd5sum = async function (md5) {
-  return await this.findOne({md5sum: md5, isActive: true});
+  return await this.find({md5sum: md5, isActive: true});
 };
 
 export const Image = mongoose.model('Image', imageSchema, 'Image');

@@ -1,13 +1,17 @@
 import config from '../config';
 import {uploadFile, md5sumFile} from '../services/uploadService';
 import {Image} from '../models/imageModel';
+import _ from 'lodash';
 
 
 export async function handleImageUpload(image, userId) {
   const checkSum = await md5sumFile(image);
   let doUpload = true;
-  const existImage = await Image.findByMd5sum(checkSum);
-  if (existImage) {
+
+  const existImages = await Image.findByMd5sum(checkSum);
+  let existImage = null;
+  if (!!existImages && existImages.length) {
+    existImage = _.find(existImages, image => image.ownerId = userId) || {};
     if (existImage.ownerId === userId)
       return {
         image: existImage,
@@ -15,6 +19,7 @@ export async function handleImageUpload(image, userId) {
         redirectUrl: `${config.CDNBase}${existImage.remoteKey}`
       };
     doUpload = false;
+    existImage = existImages[0];
   }
   const newImage = new Image();
   newImage.name = encodeURIComponent(image.name);
