@@ -15,5 +15,6 @@ uploadRoutes
     const file = ctx.request.files[0];
     if (!file || file.type.indexOf('image') === -1) throw new ErrorBase('NOT_IMAGE', 403);
     if (file.size > config.imageSizeLimit) throw new ErrorBase('IMAGE_TOO_LARGE', 403, {limit: config.imageSizeLimit});
-    return await handleImageUpload(file);
+    const user = (await ctx.getUser()) || {};
+    return await handleImageUpload(file, user._id);
   });
