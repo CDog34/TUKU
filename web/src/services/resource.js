@@ -51,7 +51,7 @@ export class Resource {
   constructor(baseUri, methods) {
     this.baseUrl = config.apiBase + baseUri;
     _.forEach(methods, (value, key) => {
-      this[key] = async(uriParams, bodyPayload) => {
+      this[key] = async (uriParams, bodyPayload) => {
         const parsedUri = Resource.parseUri(value.uri, uriParams);
         const config = {
           url: this.baseUrl + parsedUri,
@@ -60,7 +60,7 @@ export class Resource {
         };
         if ([Resource.methods.POST, Resource.methods.PUT].indexOf(value.method) !== -1) config.data = bodyPayload;
         const res = await axios.request(config);
-        if (res.status !== 200) throw res.data;
+        if (res.status >= 400) throw res.data;
         return res.data;
 
       };
