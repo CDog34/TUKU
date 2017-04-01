@@ -4,7 +4,8 @@
   </a>
   <div class="info-container" v-else-if="!!myProfile">
     <div class="avatar"
-         v-bind:style="{backgroundImage:`url(${myProfile.avatarUrl.replace('http','https')})`}"></div>
+         v-bind:style="{backgroundImage:`url(${myProfile.avatarUrl.replace('http','https')})`}"
+         v-on:click="logout"></div>
     <div class="info">
       <p class="name">{{myProfile.name}}</p>
       <p class="desc">{{myProfile.description}}</p>
@@ -16,6 +17,7 @@
 <script>
   import config from 'config';
   import {ProfileService} from 'service/profile';
+  import {SessionService} from 'service/session';
 
   export default {
     name: config.appEnv,
@@ -31,6 +33,9 @@
     methods: {
       loadProfile: async function () {
         this.myProfile = await ProfileService.getMyProfile();
+      },
+      logout: function () {
+        SessionService.killSession();
       }
     },
     beforeDestroy: function () {

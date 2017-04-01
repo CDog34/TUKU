@@ -1,6 +1,7 @@
 import {LocalStorageService} from 'service/localStorage';
 import {Resource} from 'service/resource';
 import {ProfileService} from 'service/profile';
+import {sessionResource} from 'resource/session';
 
 export class SessionService {
   static sessionCache = null;
@@ -12,7 +13,8 @@ export class SessionService {
     ProfileService.loadMyProfileFromRemote();
   }
 
-  static killSession() {
+  static async killSession() {
+    await sessionResource.kill();
     LocalStorageService.removeItem('session');
     SessionService.sessionCache = null;
     Resource.setHeader('X-Tuku-Auth', null);
