@@ -22,6 +22,7 @@
     name: 'uploadHistory',
     created: function () {
       this.fetchHistory();
+      this.$root.$on('profileUpdate', this.fetchHistory);
     },
     data() {
       return {
@@ -40,6 +41,9 @@
         this.webp = await ImageService.checkWebp();
         this.images = await ImageService.loadHistory();
       }
+    },
+    beforeDestroy: function () {
+      this.$root.$off('profileUpdate', this.fetchHistory);
     }
   };
 </script>
