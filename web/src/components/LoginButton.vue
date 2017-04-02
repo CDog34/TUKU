@@ -86,6 +86,7 @@
     color: white;
     opacity: 0;
     transition: opacity .5s;
+    border-radius: 30px;
   }
 
   .avatar:hover:after {

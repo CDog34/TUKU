@@ -55,6 +55,13 @@
     display: block;
     position: relative;
     margin: 4px;
+    transition: transform .5s, box-shadow .5s;
+  }
+
+  .image-item-wrapper:hover {
+    z-index: 9;
+    transform: scale(1.05);
+    box-shadow: rgba(0, 0, 0, 0.67) 1px 0 10px;
   }
 
   .image-item {
