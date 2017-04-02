@@ -4,7 +4,7 @@
   </a>
   <div class="info-container" v-else-if="!!myProfile">
     <div class="avatar"
-         v-bind:style="{backgroundImage:`url(${myProfile.avatarUrl.replace('http','https')})`}"
+         v-bind:style="{backgroundImage:`url(${myProfile.avatarUrl.replace('http://','https://')})`}"
          v-on:click="logout"></div>
     <div class="info">
       <p class="name">{{myProfile.name}}</p>
@@ -16,7 +16,7 @@
 
 <script>
   import config from 'config';
-  import {ProfileService} from 'service/profile';
+  import {ProfileService} from 'service/profile'; // eslint-disable-line
   import {SessionService} from 'service/session';
 
   export default {
@@ -66,6 +66,30 @@
     background-size: cover;
     border-radius: 30px;
     border: 3px solid white;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .avatar:after {
+    content: '退出';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.33);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0;
+    transition: opacity .5s;
+  }
+
+  .avatar:hover:after {
+    opacity: 1;
   }
 
   .info {
