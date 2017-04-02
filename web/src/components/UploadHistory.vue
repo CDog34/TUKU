@@ -3,12 +3,12 @@
     <h2>历史记录</h2>
     <p class="no-history" v-if="!images || !images.length">{{message}}</p>
     <div class="image-container" v-if="!!images && images.length">
-      <a v-for="image in images" v-bind:href="urlPrefix + image.remoteKey" target="_blank">
-        <img
-          class="image-item"
-          v-bind:src="urlPrefix + image.remoteKey+'!/fh/200' + (webp ? '/format/webp' : '')"
-          v-bind:alt="image.name">
-      </a>
+      <fit-image
+        v-for="image in images"
+        :key="image._id"
+        v-bind:image="image"
+        v-bind:url-prefix="urlPrefix"
+        v-bind:webp="webp"></fit-image>
 
     </div>
   </div>
@@ -17,17 +17,20 @@
 <script>
   import {ImageService} from 'service/image';
   import {SessionService} from 'service/session';
+  import {ConfigService} from 'service/config';
+  import  FitImage from 'component/FitImage';
 
   export default {
     name: 'uploadHistory',
-    created: function () {
+    created: async function () {
       this.fetchHistory();
       this.$root.$on('profileUpdate', this.fetchHistory);
+      this.urlPrefix = await ConfigService.getConfigItem('CDNBase');
     },
     data() {
       return {
         images: null,
-        urlPrefix: '//tuku.izhai.net/',
+        urlPrefix: '',
         webp: false
       };
     },
@@ -44,6 +47,9 @@
     },
     beforeDestroy: function () {
       this.$root.$off('profileUpdate', this.fetchHistory);
+    },
+    components: {
+      'fit-image': FitImage
     }
   };
 </script>
@@ -66,9 +72,14 @@
     font-size: 18px;
   }
 
-  .image-item {
-    height: 100px;
-    margin: 4px;
-    display: inline-block;
+  .image-container {
+    display: flex;
+    flex-wrap: wrap;
   }
+
+  .image-container:after {
+    content: '';
+    flex-grow: 999999999;
+  }
+
 </style>

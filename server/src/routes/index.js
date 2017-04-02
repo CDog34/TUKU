@@ -5,6 +5,7 @@ import {weiboRouter} from './weiboRouter';
 import {userRoutes} from './userRoutes';
 import {imageRoutes} from './imageRoutes';
 import {sessionRoutes} from './sessionRoutes';
+import {configRoutes} from './configRoutes';
 
 const routers = [
   homeRoutes,
@@ -12,7 +13,8 @@ const routers = [
   weiboRouter,
   userRoutes,
   imageRoutes,
-  sessionRoutes
+  sessionRoutes,
+  configRoutes
 ];
 
 export function routerInit(app) {

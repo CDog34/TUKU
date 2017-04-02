@@ -1,10 +1,12 @@
 import {imageResource} from 'resource/image';
 import {SessionService} from 'service/session';
+import config from 'config';
 
 export class ImageService {
   static webpChecked = false;
 
   static async loadHistory() {
+    if (config.appEnv === "dev") return await imageResource.getAll();
     if (!SessionService.isExist()) return null;
     return await imageResource.getHistory();
   }

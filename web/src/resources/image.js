@@ -5,4 +5,8 @@ export const imageResource = new Resource('image', {
     method: Resource.methods.GET,
     uri: '/history'
   },
+  getAll: {
+    method: Resource.methods.GET,
+    uri: '/'
+  },
 });
