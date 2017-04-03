@@ -36,4 +36,9 @@ export class SessionService {
   static isExist() {
     return !!SessionService.getSession();
   }
+
+  static async createForWeibo(code) {
+    const res =  await sessionResource.createForWeibo(null, {code});
+    SessionService.startSession(res);
+  }
 }

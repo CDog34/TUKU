@@ -5,4 +5,8 @@ export const sessionResource = new Resource('session', {
     method: Resource.methods.DEL,
     uri: '/'
   },
+  createForWeibo:{
+    method:Resource.methods.POST,
+    uri:'/weibo'
+  }
 });

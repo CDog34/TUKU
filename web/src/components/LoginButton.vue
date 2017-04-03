@@ -24,7 +24,7 @@
     data () {
       return {
         myProfile: null,
-        loginUrl: config.apiBase + 'weibo/auth'
+        loginUrl: config.apiBase + 'session/weibo'
       };
     },
     created: function () {

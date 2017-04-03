@@ -29,8 +29,7 @@
         const code = this.$route.query.code;
         if (!code) return null;
         this.$router.replace(this.$route.path);
-        const res = await WeiboService.loginFromWeibo(code);
-        SessionService.startSession(res);
+        await SessionService.createForWeibo(code);
       }
     },
     components: {UploadArea, UploadHistory}
