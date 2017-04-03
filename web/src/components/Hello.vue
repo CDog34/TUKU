@@ -11,7 +11,6 @@
   import config from 'config';
   import UploadArea from 'component/UploadArea';
   import UploadHistory from 'component/UploadHistory';
-  import {WeiboService} from 'service/weibo';
   import {SessionService} from 'service/session';
 
   export default {
