@@ -19,7 +19,7 @@ sessionRoutes
 
 sessionRoutes
   .add({
-    method: Methods.post,
+    method: Methods.POST,
     uri: '/weibo'
   })
   .bind(async (ctx) => {
