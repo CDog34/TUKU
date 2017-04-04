@@ -13,7 +13,7 @@ const movedPermanently = (res, location) => {
 
 const getNewLocation = (urlArr, isHttps) => {
   const newUri = urlArr.slice(2).join('/');
-  return `http${isHttps ? 's' : ''}://dn-tatpics.qbox.me/${newUri}`;
+  return `http${isHttps ? 's' : ''}://dn-tatpics.qbox.me/${newUri}!normal`;
 };
 
 const server = http.createServer((req, res) => {
