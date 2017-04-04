@@ -20,7 +20,7 @@ const server = http.createServer((req, res) => {
   const urlArr = req.url.split('/');
   const referer = req.headers['referer'] || '';
   const isHttps = referer.indexOf('https://') === 0;
-  const accept = req.headers['accept'];
+  const accept = req.headers['accept'] || '';
   const webp = accept.indexOf('webp') !== -1;
   if (urlArr[1] !== 'v') return notFound(res);
   return movedPermanently(res, getNewLocation(urlArr, isHttps, webp));
