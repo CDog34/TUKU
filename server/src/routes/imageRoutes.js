@@ -1,5 +1,5 @@
 import {Router, Methods} from '../services/routerService';
-import {listMyImageHistory, listAllImages,deleteUserImage} from '../controllers/imageController';
+import {listMyImageHistory, listAllImages, deleteUserImage} from '../controllers/imageController';
 import {RoleEnum} from '../models/userModel';
 import config from '../config';
 
@@ -24,9 +24,10 @@ imageRoutes
   })
   .bind(async (ctx) => {
     const user = await ctx.getUser();
-    const imagId = ctx.params.imageId;
-    if (!imagId) throw 'No ID';
-    return await deleteUserImage(imageId,user);
+    const imageId = ctx.params.imageId;
+    const hard = !!ctx.query.hardMode;
+    if (!imageId) throw 'No ID';
+    await deleteUserImage(imageId, user, hard);
   });
 
 if (config.env !== 'production') {

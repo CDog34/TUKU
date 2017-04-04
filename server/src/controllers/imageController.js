@@ -8,10 +8,14 @@ export async function listAllImages() {
   return await Image.find({}).sort({updateAt: -1});
 }
 
-export async function deleteUserImage(imageId, user) {
+export async function deleteUserImage(imageId, user, isHardMode) {
   const img = await Image.findOne({_id: imageId, isActive: true});
   if (!img) throw 'No Image';
   if (img.ownerId !== user._id) throw 'Not You';
-  img.isActive = false;
-  return await img.save();
+  if (!isHardMode) {
+    img.isActive = false;
+    return await img.save();
+  } else {
+    return await img.remove();
+  }
 }
