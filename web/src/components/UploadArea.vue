@@ -6,7 +6,7 @@
        v-on:drop.stop.prevent="handleFileDrop"
   >
     <transition-group name="image-upload-transition" tag="div">
-      <a v-bind:href='uploadedImage.redirectUrl'
+      <a v-bind:href='imageViewBase + uploadedImage.image._id'
          v-for='uploadedImage in uploadedImages'
          :key="uploadedImage.redirectUrl"
          v-on:click.stop=""
@@ -47,7 +47,8 @@
         uploadQueue: [],
         uploading: false,
         uploadedImages: [],
-        webp: false
+        webp: false,
+        imageViewBase: config.apiBase + 'image/'
       };
     },
     created: async function () {
@@ -86,7 +87,7 @@
         if (files.length > 20) {
           alert('一下子吃不下这么多图片啦，一次只能吃下20张');
         }
-        _.forEach(files, async(image, i) => {
+        _.forEach(files, async (image, i) => {
           if (i >= 20) return null;
           if (!this.isImage(image)) return alert(`文件${image.name}不是图片`);
           if (!this.isSizeOK(image)) return alert(`文件${image.name}太大`);

@@ -7,6 +7,9 @@ export async function listMyImageHistory(userId) {
 export async function listAllImages() {
   return await Image.find({}).sort({updateAt: -1});
 }
+export async function getOneActiveImage(id) {
+  return await Image.findOne({_id:id,isActive:true});
+}
 
 export async function deleteUserImage(imageId, user, isHardMode) {
   const img = await Image.findOne({_id: imageId, isActive: true});

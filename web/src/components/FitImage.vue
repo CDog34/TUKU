@@ -1,7 +1,7 @@
 <template>
   <a target="_blank"
      class="image-item-wrapper"
-     v-bind:href="urlPrefix + image.remoteKey"
+     v-bind:href="href"
      v-bind:style="{width:`${width/height *(minLineHeight ||100)}px`,flexGrow:width/height*(minLineHeight ||100),backgroundColor:placeHolderColor}"
   >
     <img
@@ -13,6 +13,7 @@
   </a>
 </template>
 <script>
+  import config from 'config';
   const CANDIDATE_COLOR = ['#666666', '#6699FF', '#66FFFF', '#66FF66', '#9966FF', '#99FF66', '#CC66FF', '#CC9966', '#FF6666', '#FF6699', '#CC9966', '#FFCC66', '#FFFF66'];
 
   export default {
@@ -22,12 +23,15 @@
         height: 100,
         width: 200 + Math.round(Math.random() * 100 - 50),
         placeHolderColor: CANDIDATE_COLOR[Math.round(Math.random() * CANDIDATE_COLOR.length)],
-        loaded: false
+        loaded: false,
       };
     },
     computed: {
       imageSource: function () {
         return this.urlPrefix + this.image.remoteKey + '!/fh/400' + (this.webp ? '/format/webp' : '');
+      },
+      href: function () {
+        return config.apiBase + 'image/' + this.image._id;
       }
     },
     created: async function () {

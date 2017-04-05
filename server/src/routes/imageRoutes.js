@@ -1,5 +1,5 @@
 import {Router, Methods} from '../services/routerService';
-import {listMyImageHistory, listAllImages, deleteUserImage} from '../controllers/imageController';
+import {listMyImageHistory, listAllImages, deleteUserImage, getOneActiveImage} from '../controllers/imageController';
 import {RoleEnum} from '../models/userModel';
 import config from '../config';
 
@@ -14,6 +14,22 @@ imageRoutes
     const user = await ctx.getUser();
     if (!user) return null;
     return await listMyImageHistory(user._id);
+  });
+
+imageRoutes
+  .add({
+    method: Methods.GET,
+    uri: '/:imageId',
+    noReturn: true
+  })
+  .bind(async (ctx) => {
+    const imageId = ctx.params.imageId;
+    const imageDocument = await getOneActiveImage(imageId);
+    let imageUrl = config.CDNBase + imageDocument.remoteKey;
+    const acceptHeader = ctx.headers.accept || '';
+    const supportWebp = acceptHeader.indexOf('webp') !== -1;
+    imageUrl = imageUrl + `!image.${supportWebp ? 'webp' : 'normal'}`;
+    return ctx.redirect(imageUrl);
   });
 
 imageRoutes
