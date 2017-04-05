@@ -2,23 +2,27 @@
   <a target="_blank"
      class="image-item-wrapper"
      v-bind:href="urlPrefix + image.remoteKey"
-     v-bind:style="{width:`${width/height *(minLineHeight ||100)}px`,flexGrow:width/height*(minLineHeight ||100)}"
+     v-bind:style="{width:`${width/height *(minLineHeight ||100)}px`,flexGrow:width/height*(minLineHeight ||100),backgroundColor:placeHolderColor}"
   >
     <img
       class="image-item"
       v-bind:src="imageSource"
-      v-bind:alt="image.name">
+      v-bind:alt="image.name"
+      v-bind:style="{opacity:loaded ? '1':'0'}">
     <i v-bind:style="{paddingBottom:`${height/width*100}%`}" class="item-spacer"></i>
   </a>
 </template>
 <script>
+  const CANDIDATE_COLOR = ['#666666', '#6699FF', '#66FFFF', '#66FF66', '#9966FF', '#99FF66', '#CC66FF', '#CC9966', '#FF6666', '#FF6699', '#CC9966', '#FFCC66', '#FFFF66'];
 
   export default {
     props: ['image', 'urlPrefix', 'webp', 'minLineHeight'],
     data(){
       return {
-        height: 0,
-        width: 0
+        height: 100,
+        width: 200 + Math.round(Math.random() * 100 - 50),
+        placeHolderColor: CANDIDATE_COLOR[Math.round(Math.random() * CANDIDATE_COLOR.length)],
+        loaded: false
       };
     },
     computed: {
@@ -30,6 +34,7 @@
       const imgSize = await this.getImageSize();
       this.height = imgSize.height;
       this.width = imgSize.width;
+      this.loaded = true;
     },
     methods: {
       getImageSize: function () {
@@ -69,6 +74,7 @@
     top: 0;
     width: 100%;
     vertical-align: bottom;
+    transition: opacity .5s;
   }
 
   .item-spacer {
