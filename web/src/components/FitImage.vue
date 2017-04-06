@@ -15,7 +15,6 @@
 </template>
 <script>
   import config from 'config';
-  const CANDIDATE_COLOR = ['#666666', '#6699FF', '#66FFFF', '#66FF66', '#9966FF', '#99FF66', '#CC66FF', '#CC9966', '#FF6666', '#FF6699', '#CC9966', '#FFCC66', '#FFFF66'];
 
   export default {
     props: ['image', 'minLineHeight'],
@@ -23,13 +22,13 @@
       return {
         height: 100,
         width: 200 + Math.round(Math.random() * 100 - 50),
-        placeHolderColor: CANDIDATE_COLOR[Math.round(Math.random() * CANDIDATE_COLOR.length)],
+        placeHolderColor: '#dddddd',
         loaded: false,
       };
     },
     computed: {
       imageSource: function () {
-        return config.apiBase + 'image/' + this.image._id + '?params=/fh/400&forceRedirect=✓';
+        return config.apiBase + 'image/' + this.image._id + '?params=/fh/200&forceRedirect=✓';
       },
       href: function () {
         return config.apiBase + 'image/' + this.image._id;

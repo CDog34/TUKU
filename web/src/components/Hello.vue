@@ -50,7 +50,7 @@
   .content-container {
     position: relative;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 48px 20px;
     box-sizing: border-box;

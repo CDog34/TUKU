@@ -40,7 +40,7 @@
     methods: {
       fetchHistory: async function () {
         this.state = 'load';
-        const res = await ImageService.loadHistory({marker: this.marker || '', pageSize: 20});
+        const res = await ImageService.loadHistory({marker: this.marker || '', pageSize: 15});
         this.totalCount = res.count;
         this.marker = res.marker;
         this.images.push(...res.items);
