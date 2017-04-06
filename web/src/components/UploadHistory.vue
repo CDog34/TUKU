@@ -16,6 +16,7 @@
   import {ImageService} from 'service/image';
   import {SessionService} from 'service/session';
   import  FitImage from 'component/FitImage';
+  import  _ from 'lodash';
 
   export default {
     name: 'uploadHistory',
@@ -39,11 +40,12 @@
     },
     methods: {
       fetchHistory: async function () {
+        if (['ready', 'init'].indexOf(this.state) === -1)return null;
         this.state = 'load';
         const res = await ImageService.loadHistory({marker: this.marker || '', pageSize: 15});
         this.totalCount = res.count;
         this.marker = res.marker;
-        this.images.push(...res.items);
+        this.images = _.uniqBy(this.images.concat(res.items), (item) => item._id);
         if (this.images.length >= this.totalCount) this.state = 'end';
         else this.state = 'ready';
 
