@@ -31,7 +31,6 @@
 <script>
   import config from 'config';
   import {UploadService} from 'service/upload';
-  import {ImageService} from 'service/image';
   import _ from 'lodash';
   import  FitImage from 'component/FitImage';
 
@@ -43,7 +42,6 @@
         uploadQueue: [],
         uploading: false,
         uploadedImages: [],
-        webp: false,
         imageViewBase: config.apiBase + 'image/'
       };
     },
@@ -54,7 +52,6 @@
       dummyInput.setAttribute('multiple', '');
       dummyInput.addEventListener('change', () => this.handleFileList(dummyInput.files));
       this.dummyInput = dummyInput;
-      this.webp = await ImageService.checkWebp();
     },
     methods: {
       clickBox: function () {
@@ -218,14 +215,14 @@
     transition: all 1s;
   }
 
-  .image-upload-transition-enter, .image-upload-transition-leave-to {
+  .image-upload-transition-enter {
     opacity: 0;
     transform: translateY(30px);
   }
 
   .image-upload-transition-leave-to {
     opacity: 0;
-    transform: translateY(-30px);
+    margin-left: -140px;
   }
 
 </style>

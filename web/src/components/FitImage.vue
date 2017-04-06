@@ -64,7 +64,7 @@
     display: block;
     position: relative;
     margin: 4px;
-    transition: transform .5s, box-shadow .5s;
+    transition: all .5s;
   }
 
   .image-item-wrapper:hover {
