@@ -2,6 +2,7 @@
   <a target="_blank"
      class="image-item-wrapper"
      v-bind:href="href"
+     v-on:click.stop=""
      v-bind:style="{width:`${width/height *(minLineHeight ||100)}px`,flexGrow:width/height*(minLineHeight ||100),backgroundColor:placeHolderColor}"
   >
     <img
@@ -17,7 +18,7 @@
   const CANDIDATE_COLOR = ['#666666', '#6699FF', '#66FFFF', '#66FF66', '#9966FF', '#99FF66', '#CC66FF', '#CC9966', '#FF6666', '#FF6699', '#CC9966', '#FFCC66', '#FFFF66'];
 
   export default {
-    props: ['image', 'urlPrefix', 'webp', 'minLineHeight'],
+    props: ['image', 'minLineHeight'],
     data(){
       return {
         height: 100,
@@ -28,7 +29,7 @@
     },
     computed: {
       imageSource: function () {
-        return this.urlPrefix + this.image.remoteKey + '!/fh/400' + (this.webp ? '/format/webp' : '');
+        return config.apiBase + 'image/' + this.image._id + '?params=/fh/400&forceRedirect=✓';
       },
       href: function () {
         return config.apiBase + 'image/' + this.image._id;

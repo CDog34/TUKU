@@ -6,9 +6,7 @@
       <fit-image
         v-for="image in images"
         :key="image._id"
-        v-bind:image="image"
-        v-bind:url-prefix="urlPrefix"
-        v-bind:webp="webp"></fit-image>
+        v-bind:image="image"></fit-image>
 
     </div>
   </div>
@@ -17,7 +15,6 @@
 <script>
   import {ImageService} from 'service/image';
   import {SessionService} from 'service/session';
-  import {ConfigService} from 'service/config';
   import  FitImage from 'component/FitImage';
 
   export default {
@@ -25,14 +22,10 @@
     created: async function () {
       this.fetchHistory();
       this.$root.$on('profileUpdate', this.fetchHistory);
-      const CDNHost = await ConfigService.getConfigItem('CDNBase');
-      this.urlPrefix = `//${CDNHost}/`;
     },
     data() {
       return {
-        images: null,
-        urlPrefix: '',
-        webp: false
+        images: null
       };
     },
     computed: {
@@ -42,7 +35,6 @@
     },
     methods: {
       fetchHistory: async function () {
-        this.webp = await ImageService.checkWebp();
         this.images = await ImageService.loadHistory();
       }
     },

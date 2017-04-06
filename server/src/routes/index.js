@@ -4,15 +4,13 @@ import {uploadRoutes} from './uploadRoutes';
 import {userRoutes} from './userRoutes';
 import {imageRoutes} from './imageRoutes';
 import {sessionRoutes} from './sessionRoutes';
-import {configRoutes} from './configRoutes';
 
 const routers = [
   homeRoutes,
   uploadRoutes,
   userRoutes,
   imageRoutes,
-  sessionRoutes,
-  configRoutes
+  sessionRoutes
 ];
 
 export function routerInit(app) {

@@ -4,7 +4,7 @@ export const baseConfig = {
   appName: pkg.name,
   version: pkg.version,
   port: 12530,
-  imageRelayDomain: ['localhost', '//tuku.moe'],
+  imageRelayDomain: ['://localhost', '://tuku.moe'],
   imageSizeLimit: 5 * 1024 * 1024,
 
   security: {

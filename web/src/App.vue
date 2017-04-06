@@ -13,12 +13,10 @@
 <script>
   import {SessionService} from 'service/session';
   import LoginButton from 'component/LoginButton';
-  import {ConfigService} from 'service/config';
 
   export default {
     name: 'app',
     created: function () {
-      ConfigService.loadConfigFromRemote();
       SessionService.initSession();
     },
     components: {

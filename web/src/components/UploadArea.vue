@@ -5,16 +5,11 @@
        v-on:dragover.stop.prevent=""
        v-on:drop.stop.prevent="handleFileDrop"
   >
-    <transition-group name="image-upload-transition" tag="div">
-      <a v-bind:href='imageViewBase + uploadedImage.image._id'
-         v-for='uploadedImage in uploadedImages'
-         :key="uploadedImage.redirectUrl"
-         v-on:click.stop=""
-         target="_blank"
-      >
-        <img v-bind:src="uploadedImage.redirectUrl + '!/fh/200' + (webp ? '/format/webp' : '')"
-             alt="" class="preview-image">
-      </a>
+    <transition-group name="image-upload-transition" tag="div" class="image-container">
+      <fit-image
+        v-for='uploadedImage in uploadedImages'
+        :key="uploadedImage.image._id"
+        v-bind:image="uploadedImage.image"></fit-image>
     </transition-group>
     <transition name="slide-fade">
       <div class="upload-preview-container" v-if="uploadQueue.length > 0">
@@ -38,6 +33,7 @@
   import {UploadService} from 'service/upload';
   import {ImageService} from 'service/image';
   import _ from 'lodash';
+  import  FitImage from 'component/FitImage';
 
   export default {
     name: config.appEnv,
@@ -116,6 +112,9 @@
       isSizeOK(file){
         return file.size <= 5 * 1024 * 1024;
       }
+    },
+    components: {
+      'fit-image': FitImage
     }
   };
 </script>
@@ -130,6 +129,16 @@
     color: rgba(0, 0, 0, .24);
     box-sizing: border-box;
     overflow-y: auto;
+  }
+
+  .image-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .image-container:after {
+    content: '';
+    flex-grow: 999999999;
   }
 
   .preview-image {

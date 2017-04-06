@@ -29,15 +29,19 @@ imageRoutes
     noReturn: true
   })
   .bind(async (ctx) => {
-    const imageId = ctx.params.imageId;
+    const imageId = ctx.params['imageId'];
+    const params = ctx.query['params'] || '';
+    const forceRedirect = !!ctx.query['forceRedirect'];
     const imageDocument = await getOneActiveImage(imageId);
-    const acceptHeader = ctx.headers.accept || '';
+    const acceptHeader = ctx.headers['accept'] || '';
     const referer = ctx.headers['referer'] || '';
     const supportWebp = acceptHeader.indexOf('webp') !== -1;
-    const imagePath = imageDocument.remoteKey + `!image.${supportWebp ? 'webp' : 'normal'}`;
-    if (!referer) return await relayImage(imagePath, ctx);
-    for (let i = 0; i < config.imageRelayDomain.length; i++) {
-      if (referer.indexOf(config.imageRelayDomain[i]) !== -1) return await relayImage(imagePath, ctx);
+    const imagePath = imageDocument.remoteKey + `!image.${supportWebp ? 'webp' : 'normal'}${params}`;
+    if (!forceRedirect){
+      if (!referer) return await relayImage(imagePath, ctx);
+      for (let i = 0; i < config.imageRelayDomain.length; i++) {
+        if (referer.indexOf(config.imageRelayDomain[i]) !== -1) return await relayImage(imagePath, ctx);
+      }
     }
     const isHttps = referer.slice(0, 5) === 'https';
     const CDNUrl = `http${isHttps ? 's' : ''}://${config.CDNBase}/`;
