@@ -19,7 +19,8 @@ const imageSchema = new mongoose.Schema({
     type: String,
     index: true
   },
-  ownerId: String
+  ownerId: String,
+  heightWidthRatio: Number
 });
 
 imageSchema.statics.findByMd5sum = async function (md5) {

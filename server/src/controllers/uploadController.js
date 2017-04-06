@@ -1,8 +1,15 @@
 import config from '../config';
-import {uploadFile, md5sumFile} from '../services/uploadService';
+import {uploadFile, md5sumFile, getImageSize} from '../services/uploadService';
 import {Image} from '../models/imageModel';
 import _ from 'lodash';
 
+
+export async function getImageRatio(img) {
+  if (img.heightWidthRatio) return null;
+  const res = await getImageSize(img.remoteKey);
+  const heightWidthRatio = res.height / res.width;
+  await Image.update({_id: img._id}, {$set: {heightWidthRatio}});
+}
 
 export async function handleImageUpload(image, userId) {
   const checkSum = await md5sumFile(image);
@@ -30,8 +37,10 @@ export async function handleImageUpload(image, userId) {
     newImage.remoteKey = res.remoteKey;
   } else {
     newImage.remoteKey = existImage.remoteKey;
+    newImage.heightWidthRatio = existImage.heightWidthRatio;
   }
   await newImage.save();
+  if (!newImage.heightWidthRatio) getImageRatio(newImage);
   return {
     image: newImage,
     CDNBase: config.CDNBase

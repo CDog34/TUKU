@@ -1,8 +1,9 @@
 import UpYun from 'upyun';
 import tools from 'upyun/tools';
 import config from '../config';
+import axios from 'axios';
 
-const {upyun : upyunConfig} = config;
+const {upyun: upyunConfig} = config;
 
 const upyun = new UpYun(
   upyunConfig.bucket,
@@ -49,4 +50,14 @@ export function md5sumFile(file) {
       rej(err);
     }
   });
+};
+
+export async function getImageSize(remoteKey) {
+  const options = {
+    url: `http://${config.CDNBase}/${remoteKey}!/info`,
+    method: 'get'
+  };
+  const res = await axios.request(options);
+  if (res.status !== 200) throw res.data;
+  return res.data;
 }

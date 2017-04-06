@@ -3,15 +3,20 @@ import stream from 'stream';
 import {Image} from '../models/imageModel';
 import config from '../config';
 import {MarkerResolver} from '../services/paginationService';
+import {getImageRatio} from '../controllers/uploadController';
 
-export async function listMyImageHistory(userId,paginationSpec) {
+export async function listMyImageHistory(userId, paginationSpec) {
   const resolver = new MarkerResolver(Image, paginationSpec);
-  return await resolver.find({ownerId: userId, isActive: true},null,{sortKey: '_id', sortOrder: -1});
+  const res = await resolver.find({ownerId: userId, isActive: true}, null, {sortKey: '_id', sortOrder: -1});
+  res.items.forEach((item) => !item.heightWidthRatio && getImageRatio(item));
+  return res;
 }
 
 export async function listAllImages(paginationSpec) {
   const resolver = new MarkerResolver(Image, paginationSpec);
-  return await resolver.find({}, null, {sortKey: '_id', sortOrder: -1});
+  const res = await resolver.find({}, null, {sortKey: '_id', sortOrder: -1});
+  res.items.forEach((item) => !item.heightWidthRatio && getImageRatio(item));
+  return res;
 }
 export async function getOneActiveImage(id) {
   return await Image.findOne({_id: id, isActive: true});

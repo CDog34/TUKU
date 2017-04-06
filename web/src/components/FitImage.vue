@@ -3,14 +3,14 @@
      class="image-item-wrapper"
      v-bind:href="href"
      v-on:click.stop=""
-     v-bind:style="{width:`${width/height *(minLineHeight ||100)}px`,flexGrow:width/height*(minLineHeight ||100),backgroundColor:placeHolderColor}"
+     v-bind:style="{width:`${1/heightWidthRatio *(minLineHeight ||100)}px`,flexGrow:1/heightWidthRatio*(minLineHeight ||100),backgroundColor:placeHolderColor}"
   >
     <img
       class="image-item"
       v-bind:src="imageSource"
       v-bind:alt="image.name"
       v-bind:style="{opacity:loaded ? '1':'0'}">
-    <i v-bind:style="{paddingBottom:`${height/width*100}%`}" class="item-spacer"></i>
+    <i v-bind:style="{paddingBottom:`${heightWidthRatio*100}%`}" class="item-spacer"></i>
   </a>
 </template>
 <script>
@@ -32,12 +32,17 @@
       },
       href: function () {
         return config.apiBase + 'image/' + this.image._id;
+      },
+      heightWidthRatio: function () {
+        return this.image.heightWidthRatio || (this.height / this.width);
       }
     },
     created: async function () {
       const imgSize = await this.getImageSize();
-      this.height = imgSize.height;
-      this.width = imgSize.width;
+      if (!this.image.heightWidthRatio) {
+        this.height = imgSize.height;
+        this.width = imgSize.width;
+      }
       this.loaded = true;
     },
     methods: {
