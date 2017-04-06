@@ -22,10 +22,12 @@
     created: async function () {
       this.fetchHistory();
       this.$root.$on('profileUpdate', this.fetchHistory);
+      this.$root.$on('v-scroll', this.checkLoad);
     },
     data() {
       return {
-        images: null
+        images: null,
+        state: 'init'
       };
     },
     computed: {
@@ -35,7 +37,12 @@
     },
     methods: {
       fetchHistory: async function () {
+        this.state = 'load';
         this.images = await ImageService.loadHistory();
+        this.state = 'ready';
+      },
+      checkLoad(scrollBottom){
+        if (scrollBottom < 40 && this.state === 'ready') this.fetchHistory();
       }
     },
     beforeDestroy: function () {

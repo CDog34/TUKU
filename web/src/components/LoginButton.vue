@@ -16,7 +16,7 @@
 
 <script>
   import config from 'config';
-  import {ProfileService} from 'service/profile'; // eslint-disable-line
+  import {ProfileService} from 'service/profile';
   import {SessionService} from 'service/session';
 
   export default {

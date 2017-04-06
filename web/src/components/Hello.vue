@@ -1,5 +1,5 @@
 <template>
-  <div class="scroll-wrapper">
+  <div class="scroll-wrapper" v-scroll>
     <div class="content-container">
       <UploadArea/>
       <UploadHistory/>
@@ -12,6 +12,7 @@
   import UploadArea from 'component/UploadArea';
   import UploadHistory from 'component/UploadHistory';
   import {SessionService} from 'service/session';
+  import scroll from 'directive/Scroll';
 
   export default {
     name: 'index',
@@ -31,7 +32,10 @@
         await SessionService.createForWeibo(code);
       }
     },
-    components: {UploadArea, UploadHistory}
+    components: {UploadArea, UploadHistory},
+    directives: {
+      scroll
+    }
   };
 </script>
 
