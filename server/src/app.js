@@ -8,6 +8,7 @@ import {routerInit} from './routes';
 import {logStartUp, logInit, logForRequest} from './services/loggerService';
 import {startDBLink} from './services/dbService';
 import {securityMiddleWare} from './services/securityService';
+import {paginationMiddleware} from './services/paginationService';
 
 const startTime = Date.now();
 
@@ -20,6 +21,7 @@ const startServer = () => {
   app.use(convert(bodyParser({
     fields: 'body'
   })));
+  app.use(paginationMiddleware());
   routerInit(app);
   startDBLink();
   app.listen(config.port, logStartUp(startTime, config.env, config.port));

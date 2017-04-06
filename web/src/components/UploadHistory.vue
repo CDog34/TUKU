@@ -26,8 +26,10 @@
     },
     data() {
       return {
-        images: null,
-        state: 'init'
+        images: [],
+        state: 'init',
+        marker: null,
+        totalCount: 0
       };
     },
     computed: {
@@ -38,8 +40,13 @@
     methods: {
       fetchHistory: async function () {
         this.state = 'load';
-        this.images = await ImageService.loadHistory();
-        this.state = 'ready';
+        const res = await ImageService.loadHistory({marker: this.marker || '', pageSize: 20});
+        this.totalCount = res.count;
+        this.marker = res.marker;
+        this.images.push(...res.items);
+        if (this.images.length >= this.totalCount) this.state = 'end';
+        else this.state = 'ready';
+
       },
       checkLoad(scrollBottom){
         if (scrollBottom < 40 && this.state === 'ready') this.fetchHistory();

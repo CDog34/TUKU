@@ -2,13 +2,16 @@ import http from 'http';
 import stream from 'stream';
 import {Image} from '../models/imageModel';
 import config from '../config';
+import {MarkerResolver} from '../services/paginationService';
 
-export async function listMyImageHistory(userId) {
-  return await Image.find({ownerId: userId, isActive: true}).sort({updateAt: -1});
+export async function listMyImageHistory(userId,paginationSpec) {
+  const resolver = new MarkerResolver(Image, paginationSpec);
+  return await resolver.find({ownerId: userId, isActive: true},null,{sortKey: '_id', sortOrder: -1});
 }
 
-export async function listAllImages() {
-  return await Image.find({}).sort({updateAt: -1});
+export async function listAllImages(paginationSpec) {
+  const resolver = new MarkerResolver(Image, paginationSpec);
+  return await resolver.find({}, null, {sortKey: '_id', sortOrder: -1});
 }
 export async function getOneActiveImage(id) {
   return await Image.findOne({_id: id, isActive: true});

@@ -19,7 +19,8 @@ imageRoutes
   .bind(async (ctx) => {
     const user = await ctx.getUser();
     if (!user) return null;
-    return await listMyImageHistory(user._id);
+    const paginationSpec = ctx.getPaginationSpec();
+    return await listMyImageHistory(user._id, paginationSpec);
   });
 
 imageRoutes
@@ -37,7 +38,7 @@ imageRoutes
     const referer = ctx.headers['referer'] || '';
     const supportWebp = acceptHeader.indexOf('webp') !== -1;
     const imagePath = imageDocument.remoteKey + `!image.${supportWebp ? 'webp' : 'normal'}${params}`;
-    if (!forceRedirect){
+    if (!forceRedirect) {
       if (!referer) return await relayImage(imagePath, ctx);
       for (let i = 0; i < config.imageRelayDomain.length; i++) {
         if (referer.indexOf(config.imageRelayDomain[i]) !== -1) return await relayImage(imagePath, ctx);
@@ -68,7 +69,8 @@ if (config.env !== 'production') {
       method: Methods.GET,
       uri: '/'
     })
-    .bind(async () => {
-      return await listAllImages();
+    .bind(async (ctx) => {
+      const paginationSpec = ctx.getPaginationSpec();
+      return await listAllImages(paginationSpec);
     });
 }

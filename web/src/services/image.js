@@ -5,10 +5,10 @@ import config from 'config';
 export class ImageService {
   static webpChecked = false;
 
-  static async loadHistory() {
-    if (config.appEnv === "dev") return await imageResource.getAll();
+  static async loadHistory(query) {
+    if (config.appEnv === "dev") return await imageResource.getAll(query);
     if (!SessionService.isExist()) return null;
-    return await imageResource.getHistory();
+    return await imageResource.getHistory(query);
   }
 
   static async checkWebp() {
