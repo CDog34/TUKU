@@ -25,7 +25,8 @@
     created: async function () {
       this.fetchHistory();
       this.$root.$on('profileUpdate', this.fetchHistory);
-      this.urlPrefix = await ConfigService.getConfigItem('CDNBase');
+      const CDNHost = await ConfigService.getConfigItem('CDNBase');
+      this.urlPrefix = `//${CDNHost}/`;
     },
     data() {
       return {

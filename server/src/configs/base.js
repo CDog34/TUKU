@@ -4,6 +4,7 @@ export const baseConfig = {
   appName: pkg.name,
   version: pkg.version,
   port: 12530,
+  imageRelayDomain: ['localhost', '//tuku-api.izhai.net'],
   imageSizeLimit: 5 * 1024 * 1024,
 
   security: {

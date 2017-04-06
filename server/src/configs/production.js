@@ -13,7 +13,7 @@ export const envConfig = {
   env: 'production',
 
   dbUrl: dbUrl,
-  CDNBase: '//tuku.izhai.net/',
+  CDNBase: 'tuku.izhai.net',
 
   upyun: {
     uploadFilePrefix: 'imageHosting',

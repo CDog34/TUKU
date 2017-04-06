@@ -16,8 +16,7 @@ export async function handleImageUpload(image, userId) {
     if (existImage)
       return {
         image: existImage,
-        CDNBase: config.CDNBase,
-        redirectUrl: `${config.CDNBase}${existImage.remoteKey}`
+        CDNBase: config.CDNBase
       };
     doUpload = false;
     existImage = existImages[0];
@@ -35,7 +34,6 @@ export async function handleImageUpload(image, userId) {
   await newImage.save();
   return {
     image: newImage,
-    CDNBase: config.CDNBase,
-    redirectUrl: `${config.CDNBase}${newImage.remoteKey}`
+    CDNBase: config.CDNBase
   };
 }

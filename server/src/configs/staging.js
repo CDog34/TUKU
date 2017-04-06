@@ -14,7 +14,7 @@ export const envConfig = {
   env: 'staging',
 
   dbUrl: dbUrl,
-  CDNBase: 'http://tuku-2-staging.b0.upaiyun.com/',
+  CDNBase: 'tuku-2-staging.b0.upaiyun.com',
 
   upyun: {
     uploadFilePrefix: 'stagingUpload',

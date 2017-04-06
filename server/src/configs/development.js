@@ -11,7 +11,7 @@ try {
 export const envConfig = {
   env: 'development',
   dbUrl: 'mongodb://localhost/tuku-2-dev',
-  CDNBase:'http://tuku-2-staging.b0.upaiyun.com/',
+  CDNBase:'tuku-2-staging.b0.upaiyun.com',
 
   upyun: {
     uploadFilePrefix: 'testUpload',
