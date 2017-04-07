@@ -34,15 +34,14 @@
         return config.apiBase + 'image/' + this.image._id;
       },
       heightWidthRatio: function () {
+        if (this.loaded) return (this.height / this.width);
         return this.image.heightWidthRatio || (this.height / this.width);
       }
     },
     created: async function () {
       const imgSize = await this.getImageSize();
-      if (!this.image.heightWidthRatio) {
-        this.height = imgSize.height;
-        this.width = imgSize.width;
-      }
+      this.height = imgSize.height;
+      this.width = imgSize.width;
       this.loaded = true;
     },
     methods: {
