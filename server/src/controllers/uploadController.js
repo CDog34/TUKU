@@ -33,7 +33,7 @@ export async function handleImageUpload(image, userId) {
   newImage.md5sum = checkSum;
   newImage.ownerId = userId;
   if (doUpload) {
-    const res = await uploadFile(image);
+    const res = await uploadFile(image,{contentSecret:checkSum});
     newImage.remoteKey = res.remoteKey;
   } else {
     newImage.remoteKey = existImage.remoteKey;

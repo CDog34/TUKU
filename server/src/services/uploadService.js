@@ -16,9 +16,11 @@ const upyun = new UpYun(
 export function uploadFile(file, options) {
   const opt = options || {};
   const useWebp = opt.webp || false;
+  const contentSecret = opt.contentSecret || null;
   const uploadOptions = {};
   uploadOptions['x-gmkerl-thumb'] = '/progressive/true';
   if (useWebp) uploadOptions['x-gmkerl-thumb'] += '/format/webp';
+  if (contentSecret) uploadOptions['Content-Secret'] = contentSecret;
   return new Promise((res, rej) => {
     try {
       const time = Date.now();
