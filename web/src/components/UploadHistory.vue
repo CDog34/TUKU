@@ -21,8 +21,8 @@
   export default {
     name: 'uploadHistory',
     created: async function () {
-      this.fetchHistory();
-      this.$root.$on('profileUpdate', this.fetchHistory);
+      this.refresh();
+      this.$root.$on('profileUpdate', this.refresh);
       this.$root.$on('v-scroll', this.checkLoad);
     },
     data() {
@@ -39,7 +39,7 @@
       }
     },
     methods: {
-      fetchHistory: async function () {
+      loadMore: async function () {
         if (['ready', 'init'].indexOf(this.state) === -1)return null;
         this.state = 'load';
         const res = await ImageService.loadHistory({marker: this.marker || '', pageSize: 15});
@@ -48,14 +48,20 @@
         this.images = _.uniqBy(this.images.concat(res.items), (item) => item._id);
         if (this.images.length >= this.totalCount) this.state = 'end';
         else this.state = 'ready';
-
+      },
+      refresh: async function () {
+        this.images = [];
+        this.state = 'init';
+        this.marker = null;
+        this.totalCount = 0;
+        await this.loadMore();
       },
       checkLoad(scrollBottom){
-        if (scrollBottom < 40 && this.state === 'ready') this.fetchHistory();
+        if (scrollBottom < 40 && this.state === 'ready') this.loadMore();
       }
     },
     beforeDestroy: function () {
-      this.$root.$off('profileUpdate', this.fetchHistory);
+      this.$root.$off('profileUpdate', this.refresh);
     },
     components: {
       'fit-image': FitImage
