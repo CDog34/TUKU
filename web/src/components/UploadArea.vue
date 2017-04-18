@@ -38,7 +38,7 @@
     name: config.appEnv,
     data () {
       return {
-        msg: `图片上床区域`,
+        msg: `图片上传区域`,
         uploadQueue: [],
         uploading: false,
         uploadedImages: [],
